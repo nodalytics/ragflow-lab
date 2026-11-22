@@ -61,6 +61,12 @@ Then, once, on the lab: `sudo sh ~/ragflow-lab/install-nginx.sh`. In Cloudflare:
     OpenAI-style server (the lesson in integration.md).
 - **Resources:** about 8 GB of images. The lab disk was 97% full on 2026-11-22 (33 GB free), and 99% after the
   install (17 GB free); `up` refuses a first install below 15 GB. Memory, at rest, is a few GB for the stack, plus the embedding model.
+- **Admin console, Services:** in v1.0.0 the three RAGFlow processes (`ragflow-server-…`, `ingestor-…`,
+  `syncer-…`) show **Timeout** about half the time. This is not a fault. Each process sends a heartbeat only
+  every 11th tick, about every 33 s (`SendHeartbeat` in `internal/service/admin_client.go` skips 10 ticks after
+  each success). The console calls a process alive only if its last heartbeat is under 15 s old
+  (`internal/admin/service.go`). So the status flips between Alive and Timeout while everything works. The real
+  check is `https://ragflow.stbfarm.org/api/v1/system/healthz`, or `lab.sh status`.
 - **Public site:**
   - Cloudflare, then the lab's nginx (`nginx/ragflow.stbfarm.org.conf`), then 127.0.0.1:8088.
   - Only Cloudflare's addresses may connect.
