@@ -1,6 +1,6 @@
 #!/bin/sh
 # Publish RAGFlow at https://ragflow.stbfarm.org through the lab's nginx. Run once on the lab, with sudo, after
-# research/ragflow/lab.sh up has copied this file there:
+# ./lab.sh up has copied this file there:
 #   sudo sh ~/ragflow-lab/install-nginx.sh            (to remove the site: --remove)
 # Installs only the vhost: /etc/nginx/sites-{available,enabled}/ragflow.stbfarm.org. Re-running it is safe.
 set -eu
@@ -15,7 +15,7 @@ if [ "${1:-}" = "--remove" ]; then
   exit 0
 fi
 code=$(curl -s -o /dev/null -w "%{http_code}" -m 5 http://127.0.0.1:$PORT/ || true)
-[ "$code" = 200 ] || { echo "RAGFlow is not answering on 127.0.0.1:$PORT (HTTP $code): research/ragflow/lab.sh up, then status" >&2; exit 1; }
+[ "$code" = 200 ] || { echo "RAGFlow is not answering on 127.0.0.1:$PORT (HTTP $code): ./lab.sh up, then status" >&2; exit 1; }
 install -m 644 $SITE.conf /etc/nginx/sites-available/$SITE
 ln -sf /etc/nginx/sites-available/$SITE /etc/nginx/sites-enabled/$SITE
 if nginx -t; then

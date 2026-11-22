@@ -2,12 +2,12 @@
 # Host RAGFlow (https://github.com/infiniflow/ragflow) on the lab, at https://ragflow.stbfarm.org.
 # See README.md here, and integration.md for why and how it fits.
 #
-# Run from your machine, anywhere in the repo (reads LAB and LAB_KEY from .secrets/lab.env):
-#   research/ragflow/lab.sh up       install or upgrade to the latest release and start it (in the background)
-#   research/ragflow/lab.sh status   version, containers, health, and the end of the start-up log
-#   research/ragflow/lab.sh down     stop the stack, keep its data
-#   research/ragflow/lab.sh purge    stop it and delete its data, images and ~/ragflow (asks first)
-#   research/ragflow/lab.sh tunnel   the web UI on this machine's http://127.0.0.1:8088 (ctrl-c to stop)
+# Run from your machine (reads LAB and LAB_KEY from .secrets/lab.env):
+#   ./lab.sh up       install or upgrade to the latest release and start it (in the background)
+#   ./lab.sh status   version, containers, health, and the end of the start-up log
+#   ./lab.sh down     stop the stack, keep its data
+#   ./lab.sh purge    stop it and delete its data, images and ~/ragflow (asks first)
+#   ./lab.sh tunnel   the web UI on this machine's http://127.0.0.1:8088 (ctrl-c to stop)
 # Then, once, on the lab: sudo sh ~/ragflow/lab/install-nginx.sh   (the public name, through the lab's nginx)
 #
 # On the lab the stack is the docker compose project "ragflow" in ~/ragflow, the release's own compose files with
@@ -21,7 +21,7 @@ set -euo pipefail
 
 cmd=${1:-up}
 here=$(cd "$(dirname "$0")" && pwd)
-root=$(cd "$here/../.." && pwd)
+root=$here
 cd "$root"  # LAB_KEY in .secrets/lab.env is relative to the repo root
 if [ -z "${LAB:-}" ] && [ -f "$root/.secrets/lab.env" ]; then . "$root/.secrets/lab.env"; fi
 : "${LAB:?set LAB (see .secrets/lab.env)}" "${LAB_KEY:?set LAB_KEY (see .secrets/lab.env)}"
@@ -121,7 +121,7 @@ if [ ! -f "$PW" ]; then
     done > "$PW" )
 fi
 set_env() {
-  grep -q "^$1=" "$D/.env" || { echo "docker/.env has no $1: check research/ragflow/lab.sh against $VERSION" >&2; exit 1; }
+  grep -q "^$1=" "$D/.env" || { echo "docker/.env has no $1: check ./lab.sh against $VERSION" >&2; exit 1; }
   sed -i "s|^$1=.*|$1=$2|" "$D/.env"
 }
 set_env RAGFLOW_IMAGE "infiniflow/ragflow:$VERSION"
@@ -156,5 +156,5 @@ print("published:", ", ".join(f"{n} {h}:{p}" for n, h, p in pub))'
 # Start in the background: the first pull is several GB, and an ssh drop must not stop it
 ( setsid nohup bash -c "cd '$D' && date && docker compose -p ragflow -f docker-compose.yml -f lab-override.yml up -d \
     && echo 'started; the server takes a few minutes to answer' || echo 'up FAILED'; date" > "$LOG" 2>&1 < /dev/null & )
-echo "starting in the background (log ~/ragflow/lab/up.log); check: research/ragflow/lab.sh status"
+echo "starting in the background (log ~/ragflow/lab/up.log); check: ./lab.sh status"
 REMOTE

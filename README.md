@@ -14,14 +14,15 @@ assessment (v0.21.1, 2026-05-14): what it is, what it costs to run, and what to 
 
 ## Run it
 
-From your machine, in the repo (it reads `LAB` and `LAB_KEY` from `.secrets/lab.env`):
+From your machine, in this repo. It reads `LAB` (user@host) and `LAB_KEY` (the key file, relative to this
+folder) from `.secrets/lab.env`, which git ignores: copy it from poker-analysis's `.secrets/lab.env`.
 
 ```sh
-research/ragflow/lab.sh up       # the latest release; installs, or upgrades what is there, in the background
-research/ragflow/lab.sh status   # version, containers, health
-research/ragflow/lab.sh tunnel   # http://127.0.0.1:8088 on your machine, without the public site
-research/ragflow/lab.sh down     # stop, keep the data
-research/ragflow/lab.sh purge    # delete the data, the images and ~/ragflow (asks first)
+./lab.sh up       # the latest release; installs, or upgrades what is there, in the background
+./lab.sh status   # version, containers, health
+./lab.sh tunnel   # http://127.0.0.1:8088 on your machine, without the public site
+./lab.sh down     # stop, keep the data
+./lab.sh purge    # delete the data, the images and ~/ragflow (asks first)
 ```
 
 Then, once, on the lab: `sudo sh ~/ragflow-lab/install-nginx.sh`. In Cloudflare: a proxied DNS record for
@@ -141,7 +142,7 @@ then it could not edit or run anything. Use the MCP route below for Claude Code.
 ```sh
 curl -s https://ragflow.stbfarm.org/api/v1/openai/<chat_id>/chat/completions \
   -H "Authorization: Bearer $RAGFLOW_API_KEY" -H 'Content-Type: application/json' \
-  -d '{"model":"model","stream":false,"messages":[{"role":"user","content":"What does the 2026-11-17 upgrades note say about nm43?"}]}'
+  -d '{"model":"model","stream":false,"messages":[{"role":"user","content":"Summarise what the documents say about ICM."}]}'
 ```
 
 ## Use it as a tool inside coding agents (MCP)
@@ -194,7 +195,7 @@ workspace). It asks for the key once and stores it in VS Code's secret storage:
 Other VS Code agents work the same way: Cline, Roo and Continue take the same URL and header in their own MCP
 settings.
 
-**Without the public site:** run `research/ragflow/lab.sh tunnel` and use `http://127.0.0.1:8088/api/v1/mcp`.
+**Without the public site:** run `./lab.sh tunnel` and use `http://127.0.0.1:8088/api/v1/mcp`.
 **Cloudflare Access:** if Access protects the site, command-line agents are stopped at its login. Give them an Access
 service token, sent as two more headers: `CF-Access-Client-Id` and `CF-Access-Client-Secret`.
 
