@@ -42,8 +42,10 @@ Then, once, on the lab: `sudo sh ~/ragflow-lab/install-nginx.sh`. In Cloudflare:
   MySQL, Elasticsearch, MinIO, Redis and the rest stay on the stack's own network. The override is built from the
   services the release defines, and `up` refuses to start if anything else would be published.
 - **Logins:**
-  - The admin is `admin@ragflow.io`.
-  - Self sign-up is off, so the admin adds users.
+  - The superadmin, `admin@ragflow.io`, only works in the **admin console**, https://ragflow.stbfarm.org/admin. The
+    normal app refuses it with a 403 ("superadmin should not login to this page").
+  - Self sign-up is off. The admin adds users in the console: Users, then New user. Those normal users log in at
+    https://ragflow.stbfarm.org and do everything else: datasets, chats, model providers, API keys.
   - The admin and database passwords are made on the first `up`. They are kept in `~/ragflow/lab-passwords.env` on
     the lab (mode 600), never in the repo: read the admin password there.
 - **Embeddings:**
