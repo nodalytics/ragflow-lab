@@ -57,11 +57,142 @@ Then, once, on the lab: `sudo sh ~/ragflow-lab/install-nginx.sh`. In Cloudflare:
     allow a private host.
   - Pick the provider type that matches the server: "Ollama" for Ollama, "OpenAI-API-Compatible" for an
     OpenAI-style server (the lesson in integration.md).
-- **Resources:** about 8 GB of images. The lab disk was 97% full on 2026-11-22, with 33 GB free; `up` refuses below
-  15 GB. Memory, at rest, is a few GB for the stack, plus the embedding model.
+- **Resources:** about 8 GB of images. The lab disk was 97% full on 2026-11-22 (33 GB free), and 99% after the
+  install (17 GB free); `up` refuses a first install below 15 GB. Memory, at rest, is a few GB for the stack, plus the embedding model.
 - **Public site:**
   - Cloudflare, then the lab's nginx (`nginx/ragflow.stbfarm.org.conf`), then 127.0.0.1:8088.
   - Only Cloudflare's addresses may connect.
   - Logins are limited to 10 a minute per visitor.
   - Uploads up to 512 MB, although Cloudflare's free plan stops at 100 MB.
   - Put Cloudflare Access in front if only the team should see the login page.
+
+## Use it as a model (OpenAI-compatible API)
+
+A RAGFlow **chat assistant** (a model, plus the datasets it searches and its prompt) answers in OpenAI's chat format.
+Any tool that takes a custom OpenAI-compatible provider can therefore talk to it as if it were a model: every answer
+is grounded in the datasets and cites them.
+
+- **Base URL:** `https://ragflow.stbfarm.org/api/v1/openai/<chat_id>`. The tool adds `/chat/completions` itself.
+  `<chat_id>` is the assistant's ID, shown in the UI under Chat, then the assistant, then its API/embed settings.
+  v1.0 removed the old `/api/v1/chats_openai/<chat_id>` path.
+- **API key:** a RAGFlow API key (in the UI: avatar, then API), sent as `Authorization: Bearer <key>`.
+- **Model name:** `model`, which means "the assistant's own model". There is no `/models` list, so type the name in by
+  hand where a tool asks for one.
+- **Extras**, in `extra_body`:
+  - `"reference": true` returns the cited chunks;
+  - `metadata_condition` filters the documents.
+  - Both are documented in RAGFlow's HTTP API reference: `docs/references/http_api_reference.md` in `~/ragflow`.
+
+**What it cannot do: tool calls.** RAGFlow drops any tools the client sends; the v1.0 source says so ("no tool calls on
+OpenAI-compat path"). A coding agent's own model edits files and runs commands through tool calls, so RAGFlow can be
+a model for **asking questions**, but not the model that drives an agent. For that, keep the agent's usual model and
+give it RAGFlow as a tool (the MCP section below).
+
+**opencode:** a custom provider in `~/.config/opencode/opencode.json`. Use it for questions; for edits, switch back to
+a tool-calling model.
+```json
+{
+  "$schema": "https://opencode.ai/config.json",
+  "provider": {
+    "ragflow": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "RAGFlow",
+      "options": {
+        "baseURL": "https://ragflow.stbfarm.org/api/v1/openai/<chat_id>",
+        "apiKey": "{env:RAGFLOW_API_KEY}"
+      },
+      "models": { "model": { "name": "RAGFlow research assistant", "tool_call": false } }
+    }
+  }
+}
+```
+Then choose it with `/models`. One assistant is one provider entry; add more with other `<chat_id>`s.
+
+**VS Code:**
+- **Continue** (`~/.continue/config.yaml`): a chat model.
+  ```yaml
+  models:
+    - name: RAGFlow
+      provider: openai
+      model: model
+      apiBase: https://ragflow.stbfarm.org/api/v1/openai/<chat_id>
+      apiKey: ${{ secrets.RAGFLOW_API_KEY }}
+      roles: [chat]
+  ```
+- **Cline and Roo Code:** API provider "OpenAI Compatible", with the base URL, the key, and model ID `model`. Their
+  agents describe tools inside the prompt, and RAGFlow wraps every request in its own prompt and retrieval. Expect a
+  good question-answerer, not a working file editor.
+- **GitHub Copilot Chat:** custom OpenAI-compatible models are only offered in some plans and builds. Where offered,
+  the same three values apply.
+
+**Claude Code:** it speaks Anthropic's Messages format, not OpenAI's, and it needs tool calls for everything it does.
+It can only reach RAGFlow through a translating proxy (LiteLLM, with `ANTHROPIC_BASE_URL` pointing at it), and even
+then it could not edit or run anything. Use the MCP route below for Claude Code.
+
+**Check it:**
+```sh
+curl -s https://ragflow.stbfarm.org/api/v1/openai/<chat_id>/chat/completions \
+  -H "Authorization: Bearer $RAGFLOW_API_KEY" -H 'Content-Type: application/json' \
+  -d '{"model":"model","stream":false,"messages":[{"role":"user","content":"What does the 2026-11-17 upgrades note say about nm43?"}]}'
+```
+
+## Use it as a tool inside coding agents (MCP)
+
+RAGFlow serves an MCP endpoint at **`https://ragflow.stbfarm.org/api/v1/mcp`**. It uses streamable HTTP, and each
+client signs in with its own RAGFlow API key (in the UI: avatar, then API). Its tools:
+- `ragflow_retrieval`: search the datasets, and get chunks with their sources;
+- `ragflow_list_datasets`;
+- `ragflow_list_chats`.
+
+With these, an agent can look up a document set (papers, rulebooks, our own write-ups) while it codes. Keep the key in
+an environment variable, never in a committed file:
+`export RAGFLOW_API_KEY=ragflow-...` (in your shell profile).
+
+**Claude Code:**
+```sh
+claude mcp add --transport http --scope user ragflow https://ragflow.stbfarm.org/api/v1/mcp \
+  --header "Authorization: Bearer $RAGFLOW_API_KEY"
+```
+`--scope user` keeps it in your own `~/.claude.json`, not in the repo. `claude mcp list` should show it connected.
+
+**opencode** (`~/.config/opencode/opencode.json`; opencode reads `{env:...}` itself):
+```json
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "ragflow": {
+      "type": "remote",
+      "url": "https://ragflow.stbfarm.org/api/v1/mcp",
+      "headers": { "Authorization": "Bearer {env:RAGFLOW_API_KEY}" }
+    }
+  }
+}
+```
+
+**VS Code** (GitHub Copilot's agent mode; `.vscode/mcp.json`, or *MCP: Open User Configuration* for every
+workspace). It asks for the key once and stores it in VS Code's secret storage:
+```json
+{
+  "inputs": [{ "type": "promptString", "id": "ragflow-key", "description": "RAGFlow API key", "password": true }],
+  "servers": {
+    "ragflow": {
+      "type": "http",
+      "url": "https://ragflow.stbfarm.org/api/v1/mcp",
+      "headers": { "Authorization": "Bearer ${input:ragflow-key}" }
+    }
+  }
+}
+```
+Other VS Code agents work the same way: Cline, Roo and Continue take the same URL and header in their own MCP
+settings.
+
+**Without the public site:** run `research/ragflow/lab.sh tunnel` and use `http://127.0.0.1:8088/api/v1/mcp`.
+**Cloudflare Access:** if Access protects the site, command-line agents are stopped at its login. Give them an Access
+service token, sent as two more headers: `CF-Access-Client-Id` and `CF-Access-Client-Secret`.
+
+**Check the endpoint** (from RAGFlow's MCP docs):
+```sh
+curl -s https://ragflow.stbfarm.org/api/v1/mcp -H "Authorization: Bearer $RAGFLOW_API_KEY" \
+  -H 'Content-Type: application/json' -H 'Accept: application/json, text/event-stream' \
+  -d '{"jsonrpc":"2.0","id":1,"method":"tools/list"}'
+```
