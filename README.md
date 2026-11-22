@@ -75,7 +75,7 @@ is grounded in the datasets and cites them.
 - **Base URL:** `https://ragflow.stbfarm.org/api/v1/openai/<chat_id>`. The tool adds `/chat/completions` itself.
   `<chat_id>` is the assistant's ID, shown in the UI under Chat, then the assistant, then its API/embed settings.
   v1.0 removed the old `/api/v1/chats_openai/<chat_id>` path.
-- **API key:** a RAGFlow API key (in the UI: avatar, then API), sent as `Authorization: Bearer <key>`.
+- **API key:** a RAGFlow API key (made at https://ragflow.stbfarm.org/user-setting/api), sent as `Authorization: Bearer <key>`.
 - **Model name:** `model`, which means "the assistant's own model". There is no `/models` list, so type the name in by
   hand where a tool asks for one.
 - **Extras**, in `extra_body`:
@@ -139,7 +139,7 @@ curl -s https://ragflow.stbfarm.org/api/v1/openai/<chat_id>/chat/completions \
 ## Use it as a tool inside coding agents (MCP)
 
 RAGFlow serves an MCP endpoint at **`https://ragflow.stbfarm.org/api/v1/mcp`**. It uses streamable HTTP, and each
-client signs in with its own RAGFlow API key (in the UI: avatar, then API). Its tools:
+client signs in with its own RAGFlow API key (made at https://ragflow.stbfarm.org/user-setting/api). Its tools:
 - `ragflow_retrieval`: search the datasets, and get chunks with their sources;
 - `ragflow_list_datasets`;
 - `ragflow_list_chats`.
