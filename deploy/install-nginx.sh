@@ -23,7 +23,11 @@ if [ "${1:-}" = "--remove" ]; then
 fi
 
 enabled=""
-site() {  # site NAME CONF: install and enable one vhost
+backup=$(mktemp -d)
+trap 'rm -rf "$backup"' EXIT
+site() {  # site NAME CONF: install and enable one vhost, keeping what was there to put back if the test fails
+  [ -f "/etc/nginx/sites-available/$1" ] && cp -p "/etc/nginx/sites-available/$1" "$backup/$1"
+  [ -e "/etc/nginx/sites-enabled/$1" ] && touch "$backup/$1.was-enabled"
   install -m 644 "$2" "/etc/nginx/sites-available/$1"
   ln -sf "/etc/nginx/sites-available/$1" "/etc/nginx/sites-enabled/$1"
   enabled="$enabled $1"
@@ -55,8 +59,12 @@ fi
 if nginx -t; then
   systemctl reload nginx
 else
-  for SITE in $enabled; do rm -f "/etc/nginx/sites-enabled/$SITE"; done
-  echo "nginx config test failed; the sites were not enabled" >&2
+  for SITE in $enabled; do  # put each site back as it was: an earlier version stays enabled
+    if [ -f "$backup/$SITE" ]; then cp -p "$backup/$SITE" "/etc/nginx/sites-available/$SITE"
+    else rm -f "/etc/nginx/sites-available/$SITE"; fi
+    [ -f "$backup/$SITE.was-enabled" ] || rm -f "/etc/nginx/sites-enabled/$SITE"
+  done
+  echo "nginx config test failed; the sites were put back as they were" >&2
   exit 1
 fi
 # a reload is asynchronous: until the new workers run, a request can land on another vhost

@@ -32,7 +32,8 @@ jobs:
           d=$(mktemp -d)
           openssl req -x509 -newkey rsa:2048 -nodes -days 1 -subj /CN=ragflow.stbfarm.org \
             -keyout "$d/server.key" -out "$d/server.crt" 2>/dev/null
-          echo '"Bearer sk-lab-test" "ci";' > "$d/coder-keys.map"
+          # full-length keys, as coder.sh makes them: the map must hold them
+          for i in 1 2 3; do echo "\"Bearer sk-lab-$(head -c 60 /dev/urandom | base64 | tr -dc A-Za-z0-9 | head -c 40)\" \"ci$i\";"; done > "$d/coder-keys.map"
           docker run --rm \
             --mount type=bind,source="$PWD/nginx/ragflow.stbfarm.org.conf",target=/etc/nginx/conf.d/ragflow.conf,readonly \
             --mount type=bind,source="$PWD/coder/nginx/coder.stbfarm.org.conf",target=/etc/nginx/conf.d/coder.conf,readonly \
