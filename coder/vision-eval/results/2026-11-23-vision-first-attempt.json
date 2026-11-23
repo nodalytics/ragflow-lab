@@ -1,0 +1,958 @@
+{
+ "items": [
+  "invoice",
+  "bar-chart",
+  "table",
+  "count-shapes",
+  "code-screenshot",
+  "video",
+  "cats",
+  "living-room",
+  "old-kitchen",
+  "stop-sign",
+  "teddy-bears",
+  "tennis-group"
+ ],
+ "models": {
+  "qwen3-vl:4b": {
+   "vram_gb": 5.5,
+   "load_seconds": 9.6,
+   "results": [
+    {
+     "item": "invoice",
+     "category": "text",
+     "score": 0.983,
+     "facts": 1.0,
+     "ocr": 0.966,
+     "missed": [],
+     "hallucinations": [],
+     "seconds": 20.9,
+     "tok_per_s": 188,
+     "words": 168,
+     "text": "This image is a digital invoice with a clean, white background and black text, formatted in a standard business invoice style. The text is left-aligned and clearly organized into sections.  \n\n### Detailed Description:  \n- **Header**: At the top, the invoice number is prominently displayed as \"INVOICE #4471\".  \n- **Date**: Below the invoice number, the date is specified as \"Date: 2026-03-14\" (formatted as year-month-day).  \n- **Billing Information**: The line \"Bill to: Harbor Supply Co.\" indicates the recipient of the invoice.  \n- **Itemized List**:  \n  - The first line lists \"3 x Steel bolts M8\" followed by the price \"$4.50\" (with the quantity, product description, and price aligned on the same line).  \n  - The second line lists \"1 x Torque wrench\" followed by the price \"$38.00\".  \n- **Total Due**: At the bottom, \"TOTAL DUE: $51.50\" shows the final amount owed.  \n\n### Exact Transcription of All Text:  \n```\nINVOICE #4471\nDate: 2026-03-14\nBill to: Harbor Supply Co.\n3 x Steel bolts M8 $4.50\n1 x Torque wrench $38.00\nTOTAL DUE: $51.50\n```"
+    },
+    {
+     "item": "bar-chart",
+     "category": "text",
+     "score": 1.0,
+     "facts": 1.0,
+     "ocr": null,
+     "missed": [],
+     "hallucinations": [],
+     "seconds": 4.2,
+     "tok_per_s": 187,
+     "words": 150,
+     "text": "This image is a **bar chart** titled \"Sales by region\".  \n\n- The **x-axis** labels the regions: \"North\", \"South\", \"East\", and \"West\".  \n- The **y-axis** represents sales values (though no explicit scale is labeled, the values are shown directly on top of each bar).  \n- Each bar is colored **blue** and has a numerical value transcribed above it:  \n  - \"North\" has a bar with the value **42**.  \n  - \"South\" has a bar with the value **17**.  \n  - \"East\" has a bar with the value **30**.  \n  - \"West\" has a bar with the value **8**.  \n\nThe chart visually compares sales performance across four geographic regions, with the \"North\" region showing the highest sales (42), followed by \"East\" (30), \"South\" (17), and \"West\" (8). All text in the image is transcribed exactly as shown:  \n- Title: \"Sales by region\"  \n- X-axis labels: \"North\", \"South\", \"East\", \"West\"  \n- Bar values: \"42\", \"17\", \"30\", \"8\""
+    },
+    {
+     "item": "table",
+     "category": "text",
+     "score": 1.0,
+     "facts": 1.0,
+     "ocr": null,
+     "missed": [],
+     "hallucinations": [],
+     "seconds": 5.8,
+     "tok_per_s": 188,
+     "words": 60,
+     "text": "The image is a table with three columns: \"Name\", \"Age\", and \"City\". The table contains four rows of data (including the header row).  \n\n- **Header row**: Name, Age, City  \n- **Data row 1**: Amara, 34, Lagos  \n- **Data row 2**: Bruno, 27, Porto  \n- **Data row 3**: Chen, 45, Xi'an  \n\nAll text in the table is transcribed exactly as shown."
+    },
+    {
+     "item": "count-shapes",
+     "category": "counting",
+     "score": 1.0,
+     "facts": 1.0,
+     "ocr": null,
+     "missed": [],
+     "hallucinations": [],
+     "seconds": 6.2,
+     "tok_per_s": 188,
+     "words": 59,
+     "text": "The image contains **red circles**, **green triangles**, and **blue squares**. Here's a breakdown of the count for each shape by color and type:  \n\n- **Red circles**: 5  \n  (Top-left, top-middle, top-right, bottom-left, bottom-right)  \n\n- **Green triangles**: 2  \n  (Left-middle, bottom-middle)  \n\n- **Blue squares**: 3  \n  (Middle-center, right-middle, bottom-center)  \n\nIn total, there are **10 shapes** in the image, with no other shapes present."
+    },
+    {
+     "item": "code-screenshot",
+     "category": "text",
+     "score": 1.0,
+     "facts": 1.0,
+     "ocr": 1.0,
+     "missed": [],
+     "hallucinations": [],
+     "seconds": 7.6,
+     "tok_per_s": 187,
+     "words": 133,
+     "text": "The image displays a Python code snippet with a function definition, a return statement, and a print statement. The code is presented on a dark background with white text.  \n\n### Detailed Description:  \n- **Function Definition**: The first line defines a function named `area` that takes a single parameter `radius`.  \n- **Return Statement**: The second line (indented under the function definition) calculates and returns the area of a circle using the formula \\( \\pi r^2 \\), where \\( \\pi \\) is approximated as `3.14159` and `r` is the `radius` parameter. The exponentiation operator `**` is used for squaring the radius.  \n- **Print Statement**: The third line calls the `area` function with the argument `2.5` and prints the result.  \n\n### Exact Transcription of Text:  \n```python\ndef area(radius):\n    return 3.14159 * radius ** 2\nprint(area(2.5))\n```"
+    },
+    {
+     "item": "video",
+     "category": "video",
+     "score": 1.0,
+     "facts": 1.0,
+     "ocr": null,
+     "missed": [],
+     "hallucinations": [],
+     "seconds": 11.5,
+     "tok_per_s": 152,
+     "words": 256,
+     "text": "In the sequence of 8 frames, the video depicts a red circle moving horizontally from left to right across a white background, followed by a change in the background color and the appearance of the word \"GOAL\". Here\u2019s the step - by - step breakdown:  \n\n1. **Frame 1**: A solid red circle is positioned on the far left side of a plain white background.  \n2. **Frame 2**: The red circle has moved slightly to the right, still on the left portion of the white background.  \n3. **Frame 3**: The red circle continues moving rightward, now centered more toward the middle of the white background.  \n4. **Frame 4**: The red circle is positioned toward the right side of the white background.  \n5. **Frame 5**: The red circle is near the far right edge of the white background.  \n6. **Frame 6**: The background transitions to a light gray, and the word \"GOAL\" appears in bold yellow text at the top center. The red circle remains on the right side.  \n7. **Frame 7**: The background darkens to a medium gray, while \"GOAL\" and the red circle stay in the same positions as in Frame 6.  \n8. **Frame 8**: The background becomes a deep blue, with \"GOAL\" and the red circle unchanged from the previous frames.  \n\nIn summary, the video shows a red circle traveling rightward across a white background, then shifts to a light gray background with the word \"GOAL\" displayed, and finally transitions to a darker blue background while maintaining the \"GOAL\" text and the red circle\u2019s position."
+    },
+    {
+     "item": "cats",
+     "category": "photo",
+     "score": 0.0,
+     "facts": 0.0,
+     "ocr": null,
+     "missed": [
+      "two cats",
+      "asleep or lying",
+      "a pink blanket",
+      "a couch",
+      "remote controls"
+     ],
+     "hallucinations": [],
+     "seconds": 10.8,
+     "tok_per_s": 182,
+     "words": 0,
+     "text": ""
+    },
+    {
+     "item": "living-room",
+     "category": "photo",
+     "score": 1.0,
+     "facts": 1.0,
+     "ocr": null,
+     "missed": [],
+     "hallucinations": [],
+     "seconds": 7.6,
+     "tok_per_s": 185,
+     "words": 428,
+     "text": "This image depicts a warmly lit, spacious interior of a modern living space with a cohesive color palette of warm yellows, reds, and greens. The room features polished wooden flooring that reflects the ambient light, enhancing the cozy atmosphere.  \n\n### Left Side:  \n- **Wall-Mounted Cabinet**: Above the television, a rectangular cabinet with two white doors (each adorned with a vertical red stripe) and black trim is mounted on the yellow wall.  \n- **Television Setup**: A large flat-screen TV sits on a black-and-white TV stand. The stand has a white front panel, black side panels, and open shelving. A small red candle holder or vase rests on the stand.  \n- **Wall Art**: A decorative item (possibly a small plant or ornament) is visible on the wall above the TV stand.  \n\n### Center:  \n- **Windows**: Three tall, rectangular windows with white frames line the yellow wall. Each window has a small plant or flower on the sill (e.g., a potted plant with red flowers near the leftmost window, and a vase with flowers near the middle window).  \n- **Radiator**: A white radiator is positioned beneath the middle window.  \n- **Dining Area**: A wooden dining table with four chairs (two with brown upholstery, two with red upholstery) occupies the center. On the table, there are items like a vase with flowers and a glass.  \n\n### Right Side:  \n- **Kitchen Area**: Visible through an open doorway, the kitchen features light-colored cabinets (beige/yellow), a refrigerator, and a microwave. A woman stands near the counter, seemingly engaged in an activity. A round clock hangs on the wall above the kitchen counter.  \n- **Fireplace**: A prominent fireplace with a black frame and green accent wall dominates the far right. The fireplace has a glass front, and in front of it, a small round table holds a green vase with a pink flower. A wicker basket and other items are nearby.  \n- **Lighting**: A ceiling fixture with three white, rounded light fixtures hangs above the dining area. A pendant light is visible in the kitchen.  \n\n### Additional Details:  \n- **Flooring**: Polished wood floors extend throughout the room, with a light-colored rug partially visible in the foreground.  \n- **Color Scheme**: The dominant yellow walls, red accents (e.g., the TV stand\u2019s red stripes, chair upholstery), and green accents (e.g., the fireplace wall, vase) create a vibrant yet harmonious aesthetic.  \n- **No Text**: There is no visible text in the image (e.g., on cabinets, appliances, or signage).  \n\nThe overall scene conveys a lived-in, inviting home with a blend of functional furniture and decorative elements, bathed in soft, natural light."
+    },
+    {
+     "item": "old-kitchen",
+     "category": "photo",
+     "score": 0.333,
+     "facts": 0.333,
+     "ocr": null,
+     "missed": [
+      "hanging pots and pans",
+      "copper",
+      "a person with their back turned",
+      "an apron",
+      "suspenders or braces",
+      "a stove"
+     ],
+     "hallucinations": [],
+     "seconds": 10.2,
+     "tok_per_s": 185,
+     "words": 81,
+     "text": "This image depicts a **vintage, historical kitchen** with a rustic, 19th-century ambiance. The space is densely packed with old-fashioned cooking equipment and tools, creating a richly textured scene.  \n\n### Key Elements:  \n1. **Workbench (Foreground Left)**:  \n   - A wooden workbench with a light brown surface, heavily dusted with flour.  \n   - Items on the bench include:  \n     - A partially baked pie (or pie crust) on the left.  \n     - A bowl of food (likely a vegetable dish) with visible ingredients.  \n     - A rolling pin"
+    },
+    {
+     "item": "stop-sign",
+     "category": "photo",
+     "score": 0.0,
+     "facts": 0.0,
+     "ocr": null,
+     "missed": [
+      "a stop sign",
+      "upside down",
+      "trees",
+      "a road",
+      "a blue sky",
+      "a building"
+     ],
+     "hallucinations": [],
+     "seconds": 10.4,
+     "tok_per_s": 185,
+     "words": 0,
+     "text": ""
+    },
+    {
+     "item": "teddy-bears",
+     "category": "photo",
+     "score": 1.0,
+     "facts": 1.0,
+     "ocr": null,
+     "missed": [],
+     "hallucinations": [],
+     "seconds": 7.3,
+     "tok_per_s": 187,
+     "words": 270,
+     "text": "The image features three plush teddy bears arranged closely together, showcasing varying shades of brown and soft, fuzzy textures.  \n\n- **Top teddy bear**: This bear has the lightest shade of brown (nearly beige) and is positioned above the other two. Its head is tilted downward, with black button eyes and a dark brown nose. The fur appears soft and slightly tousled, and its body partially overlaps the middle and bottom bears.  \n\n- **Middle teddy bear**: This bear has a medium brown hue, slightly darker than the top bear but lighter than the bottom one. It is positioned behind the bottom bear, with its body visible and its head resting near the top bear\u2019s shoulder. Its eyes are black, and its nose is dark brown, matching the top bear\u2019s features. The texture of its fur is fluffy and consistent with the other bears.  \n\n- **Bottom teddy bear**: This bear has the darkest shade of brown (almost reddish-brown) and is situated at the bottom of the arrangement. Its head is raised, with black button eyes and a dark brown nose. The fur is thick and fluffy, giving it a rich, textured appearance.  \n\n**Background**: The bears rest against a patterned fabric (likely a couch or bed) in the upper left corner, featuring a subtle striped or woven design. In the lower right corner, a light blue fabric (possibly a blanket or sheet) is visible, adding contrast to the warm tones of the teddy bears.  \n\n**Text**: There is no text present in the image.  \n\nThe overall composition conveys a cozy, nostalgic feel, with the teddy bears nestled together as if in a comforting embrace."
+    },
+    {
+     "item": "tennis-group",
+     "category": "photo",
+     "score": 0.0,
+     "facts": 0.0,
+     "ocr": null,
+     "missed": [
+      "a group of children",
+      "tennis",
+      "a trophy",
+      "caps",
+      "rackets",
+      "a fence or net"
+     ],
+     "hallucinations": [],
+     "seconds": 10.7,
+     "tok_per_s": 185,
+     "words": 0,
+     "text": ""
+    }
+   ],
+   "score": 0.693,
+   "by_category": {
+    "text": 0.996,
+    "counting": 1.0,
+    "video": 1.0,
+    "photo": 0.389
+   },
+   "hallucinations": 0,
+   "median_seconds": 10.2
+  },
+  "qwen3-vl:8b": {
+   "vram_gb": 7.8,
+   "load_seconds": 3.6,
+   "results": [
+    {
+     "item": "invoice",
+     "category": "text",
+     "score": 0.983,
+     "facts": 1.0,
+     "ocr": 0.966,
+     "missed": [],
+     "hallucinations": [],
+     "seconds": 8.2,
+     "tok_per_s": 128,
+     "words": 144,
+     "text": "This image displays a digital invoice with black text on a white background, formatted in a clean, left-aligned layout.  \n\n### Detailed Description:  \n- **Header**: Prominently features \"INVOICE #4471\" in bold, uppercase text.  \n- **Date**: Listed as \"Date: 2026-03-14\" (indicating March 14, 2026).  \n- **Billing Information**: States \"Bill to: Harbor Supply Co.\" to identify the recipient.  \n- **Line Items**:  \n  - First item: \"3 x Steel bolts M8\" with a price of \"$4.50\" (quantity, description, and price aligned on the same line, with the price right-aligned).  \n  - Second item: \"1 x Torque wrench\" with a price of \"$38.00\" (same formatting as the first item).  \n- **Total Due**: Clearly marked as \"TOTAL DUE: $51.50\" at the bottom.  \n\n### Transcription of Text (exactly as shown):  \nINVOICE #4471  \nDate: 2026-03-14  \nBill to: Harbor Supply Co.  \n3 x Steel bolts M8 $4.50  \n1 x Torque wrench $38.00  \nTOTAL DUE: $51.50"
+    },
+    {
+     "item": "bar-chart",
+     "category": "text",
+     "score": 1.0,
+     "facts": 1.0,
+     "ocr": null,
+     "missed": [],
+     "hallucinations": [],
+     "seconds": 6.7,
+     "tok_per_s": 129,
+     "words": 156,
+     "text": "The image is a vertical bar chart titled \"Sales by region\". The chart displays sales data across four regions: North, South, East, and West. Each region is represented by a blue bar, with the height of the bar corresponding to the sales value. The values are labeled at the top of each bar.  \n\n- The North region has a bar with a value of 42.  \n- The South region has a bar with a value of 17.  \n- The East region has a bar with a value of 30.  \n- The West region has a bar with a value of 8.  \n\nThe x - axis is labeled with the region names (\"North\", \"South\", \"East\", \"West\"), and the y - axis (not explicitly labeled with units) represents the sales quantity. The chart uses a simple design with blue bars on a white background.  \n\nTranscribed text exactly:  \n\"Sales by region\"  \n\"North\"  \n\"South\"  \n\"East\"  \n\"West\"  \n42  \n17  \n30  \n8"
+    },
+    {
+     "item": "table",
+     "category": "text",
+     "score": 1.0,
+     "facts": 1.0,
+     "ocr": null,
+     "missed": [],
+     "hallucinations": [],
+     "seconds": 10.7,
+     "tok_per_s": 127,
+     "words": 138,
+     "text": "The image is a table with three columns and four rows (including the header row). Below is a detailed description and exact transcription of the text in the table:\n\n### Table Structure:\n- **Header Row (first row)**:  \n  - Column 1: \"Name\"  \n  - Column 2: \"Age\"  \n  - Column 3: \"City\"  \n\n- **Data Rows (next three rows)**:  \n  - **Row 1**:  \n    - Column 1: \"Amara\"  \n    - Column 2: \"34\"  \n    - Column 3: \"Lagos\"  \n  - **Row 2**:  \n    - Column 1: \"Bruno\"  \n    - Column 2: \"27\"  \n    - Column 3: \"Porto\"  \n  - **Row 3**:  \n    - Column 1: \"Chen\"  \n    - Column 2: \"45\"  \n    - Column 3: \"Xi'an\"  \n\n### Exact Transcription of All Text in the Table:\n| Name   | Age | City   |\n|--------|-----|--------|\n| Amara  | 34  | Lagos  |\n| Bruno  | 27  | Porto  |\n| Chen   | 45  | Xi'an  |"
+    },
+    {
+     "item": "count-shapes",
+     "category": "counting",
+     "score": 1.0,
+     "facts": 1.0,
+     "ocr": null,
+     "missed": [],
+     "hallucinations": [],
+     "seconds": 8.0,
+     "tok_per_s": 127,
+     "words": 108,
+     "text": "The image contains three types of shapes: **circles**, **squares**, and **triangles**, each in specific colors. Here's a breakdown:  \n\n### 1. Red Circles  \n- There are **5 red circles**.  \n  - Positions: Top-left, top-middle, top-right, bottom-left, and bottom-right.    \n\n### 2. Blue Squares  \n- There are **3 blue squares**.  \n  - Positions: Center (middle of the image), top-right (to the right of the center), and bottom-center (below the center).  \n\n### 3. Green Triangles  \n- There are **2 green triangles**.  \n  - Positions: Left (upper-left area) and middle (lower-middle area).    \n\n### Summary  \n- **Red circles**: 5  \n- **Blue squares**: 3  \n- **Green triangles**: 2  \n\nNo other shapes or colors are present in the image."
+    },
+    {
+     "item": "code-screenshot",
+     "category": "text",
+     "score": 1.0,
+     "facts": 1.0,
+     "ocr": 1.0,
+     "missed": [],
+     "hallucinations": [],
+     "seconds": 7.0,
+     "tok_per_s": 127,
+     "words": 66,
+     "text": "The image displays a Python code snippet on a dark background with white text. It consists of three lines of code:  \n\n1. A function definition: `def area(radius):`  \n2. An indented return statement: `    return 3.14159 * radius ** 2`  \n3. A print statement: `print(area(2.5))`  \n\n### Transcription of the text in the image (exactly as shown):  \n```python\ndef area(radius):\n    return 3.14159 * radius ** 2\nprint(area(2.5))\n```"
+    },
+    {
+     "item": "video",
+     "category": "video",
+     "score": 0.8,
+     "facts": 0.8,
+     "ocr": null,
+     "missed": [
+      "GOAL comes after the movement"
+     ],
+     "hallucinations": [],
+     "seconds": 12.8,
+     "tok_per_s": 110,
+     "words": 212,
+     "text": "The video shows a red circle moving from the left side of the frame toward the right, with the background and text changing as it progresses:  \n\n1. **Initial Movement**: The red circle starts on the far left of the white background.  \n2. **Centering**: It moves rightward, gradually shifting toward the center of the frame.  \n3. **Mid-Frame Position**: The circle is centered on the white background.  \n4. **Rightward Progression**: It continues moving right, now positioned slightly to the right of the center.  \n5. **Approaching the Right Edge**: The circle moves closer to the right edge of the frame.  \n6. **Background & Text Change (First Transition)**: The background turns light gray, and the word \u201cGOAL\u201d appears in yellow at the top. The red circle remains on the right side.  \n7. **Background Darkening (Second Transition)**: The background shifts to a darker gray, while \u201cGOAL\u201d and the red circle stay in place.  \n8. **Final Background & Text (Third Transition)**: The background becomes dark blue, with \u201cGOAL\u201d (yellow) and the red circle still visible on the right.  \n\nIn summary, the video depicts a red circle traveling from left to right across a white background, then transitioning to a sequence where the background changes to light gray, gray, and dark blue while the word \u201cGOAL\u201d appears in yellow."
+    },
+    {
+     "item": "cats",
+     "category": "photo",
+     "score": 1.0,
+     "facts": 1.0,
+     "ocr": null,
+     "missed": [],
+     "hallucinations": [],
+     "seconds": 9.7,
+     "tok_per_s": 126,
+     "words": 196,
+     "text": "The image depicts two tabby cats resting on a vibrant pink couch. Both cats have a mix of brown, black, and orange fur patterns.  \n\n- **Left Cat**: Lying on its side with eyes closed (asleep), it has a green collar around its neck. Its body is stretched out, with one front paw extended and back legs relaxed. The tail, with dark fur at the tip, is visible.  \n- **Right Cat**: Also lying on its side with eyes closed (asleep), its head is lowered toward the couch. Its front paws are extended, and back legs are relaxed.  \n\nBetween the cats, two remote controls rest on the pink couch:  \n- The **left remote** is light blue with a row of colored buttons (red, green, yellow, blue) at the bottom and various other buttons.  \n- The **right remote** is light gray or white with similar colored buttons and additional controls.  \n\nThe couch has a soft, plush texture, and the background shows the pink armrests of the couch. The scene conveys a cozy, relaxed atmosphere typical of a living room.  \n\n**Text Transcription**: There is no discernible text in the image (the remote controls\u2019 button labels are not readable as text)."
+    },
+    {
+     "item": "living-room",
+     "category": "photo",
+     "score": 1.0,
+     "facts": 1.0,
+     "ocr": null,
+     "missed": [],
+     "hallucinations": [],
+     "seconds": 10.0,
+     "tok_per_s": 127,
+     "words": 321,
+     "text": "This image depicts a warm, sunlit living and dining space that seamlessly transitions into a kitchen area. The room features **warm yellow walls** with a contrasting **green accent wall** on the right, housing a black fireplace with a glass front. The floor is polished hardwood, complemented by a light-colored rug in the foreground.  \n\n### Key Elements:  \n- **Left Side**: A large flat-screen TV sits on a dark wooden stand with a white lower section. Above the TV, a wall-mounted cabinet with two doors (each featuring a vertical red stripe) is mounted on the yellow wall. A red vase rests on the TV stand, and a small pet bed lies on the floor nearby. Below the TV stand, a radiator is positioned beneath a window with a white frame; the windowsill holds a plant with green leaves and a red flower.  \n- **Center**: A dining table with four chairs (two brown, two orange) occupies the middle. The table holds a vase with flowers and other small items. Three windows with white frames line the back wall, each with a radiator below. Natural light floods the room through these windows.  \n- **Right Side**: The green accent wall features a black fireplace. In front of the fireplace, a round table holds a green vase with a single pink flower. Beyond the dining area, a kitchen is visible: yellow cabinets, a stainless steel refrigerator, and a person (standing with their back to the camera) near the counter. A round wall clock hangs above the kitchen.  \n- **Ceiling**: A modern light fixture with three white lamps hangs from the ceiling.  \n\n### Text:  \nNo visible text appears in the image (e.g., no labels on furniture, signage, or digital displays). The TV screen is off, and all other elements (cabinets, appliances, decor) lack printed text.  \n\nThe overall ambiance is cozy and vibrant, with a harmonious blend of warm yellows, greens, and earthy tones, creating an inviting, lived-in space."
+    },
+    {
+     "item": "old-kitchen",
+     "category": "photo",
+     "score": 1.0,
+     "facts": 1.0,
+     "ocr": null,
+     "missed": [],
+     "hallucinations": [],
+     "seconds": 12.9,
+     "tok_per_s": 127,
+     "words": 260,
+     "text": "The image depicts a bustling, historical-style kitchen with warm, ambient lighting.  \n\n### Foreground:  \nA wooden worktable, dusted with flour, dominates the lower portion. On it:  \n- A large pie with a lattice crust (left side).  \n- A smaller pie with a green filling (center-left).  \n- A rolling pin, dough scraper, metal measuring cup, small white bowl, and a container with a white lid.  \n- A plate with a baked item (center).  \nA person\u2019s hand (wearing a dark green sleeve) points toward the pies, suggesting explanation or demonstration.  \n\n### Midground:  \nA chef with curly hair stands with their back to the camera, facing a large black stove. The chef wears a white apron over a white shirt, black pants, and suspenders. The stove has a large black pot with dripping liquid and a cloth hanging from it.  \n\n### Background & Walls:  \n- **Left wall**: Hanging herbs (e.g., dill or parsley), pots, and a shelf with additional cookware.  \n- **Center wall**: An array of hanging cookware: copper pots, blackened cast iron pans, ladles, spoons, and other utensils.  \n- **Right wall**: A large metal sink, a black cabinet with a small door, and more hanging tools (e.g., a curved blade).  \n\n### Lighting & Atmosphere:  \nWarm light emanates from hanging lamps (e.g., a glowing lamp on the right wall), creating a cozy, functional ambiance. The floor is a brownish material (likely linoleum or old tile).  \n\n### Text:  \nNo readable text appears in the image.  \n\nThis scene evokes a working historical kitchen, possibly in a museum or recreated setting, emphasizing traditional cooking tools and activity."
+    },
+    {
+     "item": "stop-sign",
+     "category": "photo",
+     "score": 0.833,
+     "facts": 0.833,
+     "ocr": null,
+     "missed": [
+      "upside down"
+     ],
+     "hallucinations": [],
+     "seconds": 14.5,
+     "tok_per_s": 126,
+     "words": 225,
+     "text": "The image depicts a **red octagonal stop sign** with the word **\"STOP\"** written in white capital letters. The sign is mounted on a dark-colored metal pole and positioned at the center of the frame, slightly to the right.  \n\n### Detailed Scene Description:  \n- **Foreground**: The stop sign dominates the foreground, with a sidewalk curving into the frame below it. Lush green shrubs and small plants are visible near the base of the pole.  \n- **Midground**: A paved street intersects the sidewalk, with a crosswalk marked by white lines. To the left of the stop sign, large mature trees with dense green foliage cast shadows on the pavement. Behind these trees, a utility vehicle (likely a truck with equipment) is parked near landscaped bushes. To the right, additional trees and shrubs frame the scene, with a white building (flat roof, multiple windows) partially obscured by vegetation in the distance.  \n- **Background**: The sky is bright blue with scattered white clouds, indicating a sunny day. A yellow warning sign (text not clearly legible) is visible far in the background, near the white building.  \n\n### Text Transcription:  \nThe only clearly legible text in the image is on the stop sign:  \n**\"STOP\"**  \n\nNo other text is discernible in the image. The scene conveys a suburban or urban intersection on a clear, sunny day, with natural greenery and infrastructure elements."
+    },
+    {
+     "item": "teddy-bears",
+     "category": "photo",
+     "score": 1.0,
+     "facts": 1.0,
+     "ocr": null,
+     "missed": [],
+     "hallucinations": [],
+     "seconds": 8.4,
+     "tok_per_s": 126,
+     "words": 172,
+     "text": "The image features three plush teddy bears arranged closely together, likely on a soft surface.  \n\n1. **Top Teddy Bear**: Light brown, fluffy texture. It has small black button eyes and a dark brown nose. Its head rests on the middle bear, with its ears and fur appearing soft and well-worn.  \n2. **Middle Teddy Bear**: Pale beige/tan, with a smoother texture compared to the others. It has black button eyes and a black nose. Its head is positioned between the top and bottom bears, creating a huddled arrangement.  \n3. **Bottom Teddy Bear**: Deep caramel brown, with very fluffy, thick fur. It has black button eyes and a dark brown nose, and its head is nestled near the middle bear.  \n\nThe background includes a dark woven fabric (likely a couch or chair) at the top and a light blue fabric (such as a blanket or sheet) at the bottom right. The teddy bears are positioned in a cozy, intimate manner, suggesting a sense of comfort and companionship.  \n\nNo text is present in the image."
+    },
+    {
+     "item": "tennis-group",
+     "category": "photo",
+     "score": 0.5,
+     "facts": 0.5,
+     "ocr": null,
+     "missed": [
+      "a trophy",
+      "caps",
+      "rackets"
+     ],
+     "hallucinations": [],
+     "seconds": 15.4,
+     "tok_per_s": 126,
+     "words": 61,
+     "text": "The image depicts a group of approximately ten children and a few adults gathered on a blue tennis court, likely after a competitive event. The setting is an outdoor tennis facility surrounded by a chain-link fence, dense green trees, and a large green windscreen in the background, under bright daylight with visible shadows.  \n\n### Detailed Description:  \n- **Foreground & Group Composition"
+    }
+   ],
+   "score": 0.926,
+   "by_category": {
+    "text": 0.996,
+    "counting": 1.0,
+    "video": 0.8,
+    "photo": 0.889
+   },
+   "hallucinations": 0,
+   "median_seconds": 10.0
+  },
+  "minicpm-v4.5:latest": {
+   "vram_gb": 7.4,
+   "load_seconds": 3.2,
+   "results": [
+    {
+     "item": "invoice",
+     "category": "text",
+     "score": 0.926,
+     "facts": 1.0,
+     "ocr": 0.852,
+     "missed": [],
+     "hallucinations": [],
+     "seconds": 1.9,
+     "tok_per_s": 135,
+     "words": 40,
+     "text": "This image is an invoice with the following details:\n\n- **Invoice #4471**\n- **Date: 2026-03-14**\n- **Bill to: Harbor Supply Co.**\n- **Items:**\n  - 3 x Steel bolts M8: $4.50\n  - 1 x Torque wrench: $38.00\n- **TOTAL DUE: $51.50**"
+    },
+    {
+     "item": "bar-chart",
+     "category": "text",
+     "score": 0.667,
+     "facts": 0.667,
+     "ocr": null,
+     "missed": [
+      "North 42",
+      "East 30"
+     ],
+     "hallucinations": [],
+     "seconds": 2.1,
+     "tok_per_s": 133,
+     "words": 102,
+     "text": "The image is a bar chart titled \"Sales by region.\" It displays sales data for four regions: North, South, East, and West. Each region is represented by a vertical blue bar, with the height of each bar corresponding to the sales value.  \n\n- **North**: The tallest bar, labeled with the number \"42.\"  \n- **South**: A shorter bar, labeled \"17.\"  \n- **East**: A bar taller than South but shorter than North, labeled \"30.\"  \n- **West**: The shortest bar, labeled \"8.\"  \n\nThe chart visually compares sales performance across these regions, with the North region having the highest sales and the West region the lowest."
+    },
+    {
+     "item": "table",
+     "category": "text",
+     "score": 1.0,
+     "facts": 1.0,
+     "ocr": null,
+     "missed": [],
+     "hallucinations": [],
+     "seconds": 1.7,
+     "tok_per_s": 136,
+     "words": 58,
+     "text": "This image shows a table with three columns and four rows (including the header row). The columns are labeled \"Name,\" \"Age,\" and \"City.\" The rows contain the following data:\n\n| Name   | Age | City    |\n|--------|-----|---------|\n| Amara  | 34  | Lagos   |\n| Bruno  | 27  | Porto   |\n| Chen   | 45  | Xi'an   |"
+    },
+    {
+     "item": "count-shapes",
+     "category": "counting",
+     "score": 1.0,
+     "facts": 1.0,
+     "ocr": null,
+     "missed": [],
+     "hallucinations": [],
+     "seconds": 1.4,
+     "tok_per_s": 134,
+     "words": 59,
+     "text": "This image contains various shapes in different colors. Here's a breakdown of the shapes and their counts by type and color:\n\n- **Red Circles**: There are 5 red circles.\n- **Green Triangles**: There are 2 green triangles.\n- **Blue Squares**: There are 3 blue squares.\n\nTo summarize:\n- Red circles: 5\n- Green triangles: 2\n- Blue squares: 3"
+    },
+    {
+     "item": "code-screenshot",
+     "category": "text",
+     "score": 1.0,
+     "facts": 1.0,
+     "ocr": 1.0,
+     "missed": [],
+     "hallucinations": [],
+     "seconds": 2.2,
+     "tok_per_s": 133,
+     "words": 95,
+     "text": "This image shows a snippet of Python code on a dark background. The code defines a function named `area` that calculates the area of a circle using the formula \\( \\pi r^2 \\), where \\( \\pi \\) is approximated as 3.14159 and `radius` is the input parameter. The function returns the calculated area. Below the function definition, there is a line that calls the `area` function with an argument of 2.5 and prints the result.\n\nHere is the transcribed text exactly as it appears:\n\n```\ndef area(radius):\n    return 3.14159 * radius ** 2\n\nprint(area(2.5))\n```"
+    },
+    {
+     "item": "video",
+     "category": "video",
+     "score": 1.0,
+     "facts": 1.0,
+     "ocr": null,
+     "missed": [],
+     "hallucinations": [],
+     "seconds": 3.7,
+     "tok_per_s": 129,
+     "words": 105,
+     "text": "The video shows a red dot moving across a white background. Initially, the dot is on the left side of the screen. It then moves steadily to the right, passing through the center of the screen. As it continues moving right, the background changes color: first to a light gray, then to a darker gray, and finally to a dark blue. Throughout this movement, the word \"GOAL\" appears in yellow text near the right side of the screen, indicating the target or endpoint. The red dot continues moving right until it reaches the far right edge of the screen, where the word \"GOAL\" remains visible."
+    },
+    {
+     "item": "cats",
+     "category": "photo",
+     "score": 1.0,
+     "facts": 1.0,
+     "ocr": null,
+     "missed": [],
+     "hallucinations": [],
+     "seconds": 3.4,
+     "tok_per_s": 134,
+     "words": 180,
+     "text": "This image shows two tabby cats sleeping on a bright pink blanket that is draped over a red couch. The cat on the left is lying on its side with its head resting on the blanket, its body stretched out and its tail curled slightly. The cat on the right is also lying on its side, but its head is turned to the side and its front paws are stretched out in front of it. Both cats have a mix of dark and light brown fur with distinctive tabby markings.\n\nThere are two remote controls visible in the image. The remote control on the left has a blue body with white buttons and the text \"Wii\" is visible on it. The remote control on the right has a white body with colorful buttons and the text \"Wii\" is also visible on it.\n\nThe overall scene is calm and cozy, with the cats appearing to be in a deep sleep. The bright pink blanket contrasts with the red couch and the tabby fur of the cats, creating a visually striking image."
+    },
+    {
+     "item": "living-room",
+     "category": "photo",
+     "score": 1.0,
+     "facts": 1.0,
+     "ocr": null,
+     "missed": [],
+     "hallucinations": [],
+     "seconds": 3.9,
+     "tok_per_s": 133,
+     "words": 234,
+     "text": "This image shows a bright, modern living and dining area with yellow walls and large windows that let in plenty of natural light. The room has a warm, inviting atmosphere with wooden flooring and a mix of contemporary furniture.\n\nOn the left side, there's a flat-screen TV on a white and black media console, with a pink vase and a small plant on top. Above the TV, there's a white and black wall-mounted cabinet with three vertical handles. A radiator is positioned below the windows.\n\nIn the center of the room, there's a dining table with four chairs\u2014two in front and two behind. The table is set with pink vases and flowers, and there's a person standing near the window, looking out. Another person is partially visible through the window, sitting at a counter in the kitchen area.\n\nThe kitchen is visible in the background, with yellow cabinets, a stainless steel refrigerator, and a clock on the wall. There's a hanging light fixture above the kitchen counter.\n\nOn the right side of the room, there's a green accent wall with a fireplace. In front of the fireplace, there's a round pink table with a green vase containing a pink flower.\n\nThe room is well-lit with natural light from the windows and a ceiling light fixture with multiple bulbs. The overall style is modern and cozy, with a focus on bright colors and clean lines."
+    },
+    {
+     "item": "old-kitchen",
+     "category": "photo",
+     "score": 0.889,
+     "facts": 0.889,
+     "ocr": null,
+     "missed": [
+      "copper"
+     ],
+     "hallucinations": [],
+     "seconds": 4.0,
+     "tok_per_s": 132,
+     "words": 221,
+     "text": "This image depicts a bustling, rustic kitchen scene, likely from a historical or themed setting, given the traditional attire and decor. The kitchen is filled with various cooking utensils and ingredients, creating a lively atmosphere of food preparation.\n\nIn the foreground, a large wooden table is covered with baking trays, a rolling pin, a jar of what appears to be jam or preserves, and several bowls. One bowl contains a pie or tart with a green filling, and another has a white, creamy substance. A person\u2019s hand is visible on the left side of the table, pointing towards the pie.\n\nHanging from the ceiling and mounted on the walls are numerous pots, pans, and utensils, including ladles, skillets, and a large cauldron. The walls are lined with more hanging tools, such as a cleaver and a large spoon.\n\nIn the center of the kitchen stands a person wearing a white apron and a white shirt, with suspenders over their shoulders. They are facing away from the camera, looking towards a large black stove or oven. To the right of the stove is a sink with a faucet.\n\nThe kitchen has a warm, earthy color palette, with wooden walls and a tiled floor. The lighting is soft, with a hanging lamp illuminating the scene.\n\nThere is no visible text in the image."
+    },
+    {
+     "item": "stop-sign",
+     "category": "photo",
+     "score": 0.833,
+     "facts": 0.833,
+     "ocr": null,
+     "missed": [
+      "upside down"
+     ],
+     "hallucinations": [],
+     "seconds": 3.0,
+     "tok_per_s": 131,
+     "words": 161,
+     "text": "The image shows a red octagonal stop sign with the word \"STOP\" in white letters, mounted on a metal pole at a street corner. The sign is positioned in the foreground, slightly to the left of the center of the frame. Behind the stop sign, there is a street intersection with a crosswalk and a white arrow painted on the asphalt pointing to the right. To the left of the stop sign, there is a tree with green foliage, and further back, a piece of heavy machinery (possibly a crane or construction equipment) is visible near some bushes and a low wall. In the background, there are more trees, a white building with a flat roof, and a clear blue sky with a few scattered white clouds. The scene appears to be in a suburban or commercial area with well-maintained landscaping, including trimmed bushes and a sidewalk in the lower right corner. There is no other text visible in the image."
+    },
+    {
+     "item": "teddy-bears",
+     "category": "photo",
+     "score": 0.75,
+     "facts": 0.75,
+     "ocr": null,
+     "missed": [
+      "blue fabric"
+     ],
+     "hallucinations": [],
+     "seconds": 3.0,
+     "tok_per_s": 134,
+     "words": 137,
+     "text": "The image shows a close-up of several teddy bears huddled together on a textured, dark-colored fabric surface, possibly a couch or chair. There are at least four teddy bears visible, all in various shades of brown. One bear in the foreground is a rich, golden-brown color with a soft, fluffy texture and small, round black eyes. Behind it, another bear is a lighter, tan-brown with a similar plush appearance and a small black nose. To the right, a larger bear with a medium-brown fur and a slightly darker face is partially visible, its arm draped over the lighter tan bear. In the upper right corner, there's a glimpse of another bear, possibly a darker brown, with a fuzzy texture. The bears are arranged closely, giving a cozy, cuddly impression. There is no text visible in the image."
+    },
+    {
+     "item": "tennis-group",
+     "category": "photo",
+     "score": 1.0,
+     "facts": 1.0,
+     "ocr": null,
+     "missed": [],
+     "hallucinations": [],
+     "seconds": 2.5,
+     "tok_per_s": 131,
+     "words": 125,
+     "text": "This image shows a group of children and two adults standing on a tennis court. The court is blue with a green fence and trees in the background. The children are dressed in casual athletic clothing, many wearing hats or caps. One child on the left is holding a tennis racket and wearing a yellow cap. Another child in the center is wearing a white shirt with a red and orange sash that reads \"TENNIS CAMP.\" The adult in the center is wearing a red shirt and holding a trophy. The other adult is wearing a blue shirt and sunglasses. The group appears to be posing for a photo, possibly after a tennis camp or event. There is no other text visible in the image."
+    }
+   ],
+   "score": 0.922,
+   "by_category": {
+    "text": 0.898,
+    "counting": 1.0,
+    "video": 1.0,
+    "photo": 0.912
+   },
+   "hallucinations": 0,
+   "median_seconds": 3.0
+  },
+  "gemma4:e4b": {
+   "vram_gb": 0.3,
+   "load_seconds": 23.4,
+   "results": [
+    {
+     "item": "invoice",
+     "category": "text",
+     "score": 0.983,
+     "facts": 1.0,
+     "ocr": 0.966,
+     "missed": [],
+     "hallucinations": [],
+     "seconds": 4.6,
+     "tok_per_s": 301,
+     "words": 36,
+     "text": "This is a black and white image of a simple invoice.\n\n**Text Transcription:**\n\nINVOICE #4471\nDate: 2026-03-14\n\nBill to: Harbor Supply Co.\n\n3 x Steel bolts M8 $4.50\n1 x Torque wrench $38.00\n\nTOTAL DUE: $51.50"
+    },
+    {
+     "item": "bar-chart",
+     "category": "text",
+     "score": 1.0,
+     "facts": 1.0,
+     "ocr": null,
+     "missed": [],
+     "hallucinations": [],
+     "seconds": 1.2,
+     "tok_per_s": 299,
+     "words": 43,
+     "text": "This is a bar chart titled \"Sales by region\".\n\nThe chart displays the sales figures for four different regions: North, South, East, and West.\n\nHere are the values for each region:\n*   **North:** 42\n*   **South:** 17\n*   **East:** 30\n*   **West:** 8"
+    },
+    {
+     "item": "table",
+     "category": "text",
+     "score": 1.0,
+     "facts": 1.0,
+     "ocr": null,
+     "missed": [],
+     "hallucinations": [],
+     "seconds": 1.1,
+     "tok_per_s": 317,
+     "words": 51,
+     "text": "This image is a table with three columns: \"Name\", \"Age\", and \"City\".\n\nHere is the transcription of the table, including every row:\n\n| Name | Age | City |\n|---|---|---|\n| Amara | 34 | Lagos |\n| Bruno | 27 | Porto |\n| Chen | 45 | Xi'an |"
+    },
+    {
+     "item": "count-shapes",
+     "category": "counting",
+     "score": 0.667,
+     "facts": 0.667,
+     "ocr": null,
+     "missed": [
+      "5 red circles"
+     ],
+     "hallucinations": [],
+     "seconds": 1.1,
+     "tok_per_s": 275,
+     "words": 63,
+     "text": "This image is a simple arrangement of colored geometric shapes on a white background.\n\nHere is a count of each shape by kind and color:\n\n**Circles (Red):**\n*   There are **4** red circles.\n\n**Triangles (Green):**\n*   There are **2** green triangles.\n\n**Squares (Blue):**\n*   There are **3** blue squares.\n\n**In summary:**\n*   **Red Circles:** 4\n*   **Green Triangles:** 2\n*   **Blue Squares:** 3"
+    },
+    {
+     "item": "code-screenshot",
+     "category": "text",
+     "score": 1.0,
+     "facts": 1.0,
+     "ocr": 1.0,
+     "missed": [],
+     "hallucinations": [],
+     "seconds": 2.6,
+     "tok_per_s": 283,
+     "words": 138,
+     "text": "This image displays a snippet of Python code.\n\n**Text Transcription:**\n\n```python\ndef area(radius):\n    return 3.14159 * radius ** 2\n\nprint(area(2.5))\n```\n\n**Detailed Description:**\n\nThe image shows a block of code defining and then calling a function.\n\n1.  **Function Definition:**\n    *   `def area(radius):` defines a function named `area` that accepts one argument, `radius`.\n    *   `return 3.14159 * radius ** 2` is the body of the function. It calculates the area of a circle using the formula $\\pi r^2$, where $\\pi$ is approximated as `3.14159`, $r$ is the input `radius`, and `** 2` denotes squaring the radius.\n\n2.  **Function Call:**\n    *   `print(area(2.5))` calls the `area` function, passing `2.5` as the `radius`. The result of this calculation is then printed to the console.\n\nIf this code were executed, the output would be: $3.14159 \\times (2.5)^2 = 3.14159 \\times 6.25 = 19.6349375$."
+    },
+    {
+     "item": "video",
+     "category": "video",
+     "score": 0.6,
+     "facts": 0.6,
+     "ocr": null,
+     "missed": [
+      "it moves left to right",
+      "GOAL comes after the movement"
+     ],
+     "hallucinations": [
+      "a person or a field"
+     ],
+     "seconds": 3.0,
+     "tok_per_s": 246,
+     "words": 254,
+     "text": "Based on the 8 frames provided, here is a description of what happens in the video, in order:\n\nThe video appears to be a sequence showing a **goal being scored in a game, likely soccer or a similar sport.**\n\n1. **Frames 1-4 (White Background):** The video starts with a plain white background. A red circle (representing a ball or a marker) appears in the left half of the frame. In Frame 2, the red circle moves slightly to the center-left. In Frame 3, the red circle moves to the center. In Frame 4, the red circle moves to the center-right.\n2. **Frame 5 (Light Gray Background):** The background changes to a light gray. The red circle is now positioned near the center of the frame.\n3. **Frame 6 (Light Gray Background):** The background remains light gray. The red circle is still near the center.\n4. **Frame 7 (Dark Gray Background):** The background changes to a dark gray. The word **\"GOAL\"** appears in large yellow letters in the upper left area of the frame. The red circle is now visible in the lower right corner.\n5. **Frame 8 (Dark Gray Background):** The background remains dark gray. The word **\"GOAL\"** is still visible, and the red circle remains in the lower right corner.\n\n**In summary:** The video transitions from a simple visual tracking of a red object (the ball) on a white field to a celebratory or conclusive screen where the word \"GOAL\" is displayed over a dark background, confirming the successful scoring of a goal."
+    },
+    {
+     "item": "cats",
+     "category": "photo",
+     "score": 0.6,
+     "facts": 0.6,
+     "ocr": null,
+     "missed": [
+      "a couch",
+      "remote controls"
+     ],
+     "hallucinations": [],
+     "seconds": 4.0,
+     "tok_per_s": 210,
+     "words": 289,
+     "text": "This is a photograph featuring two cats resting on a bright pink, soft-looking surface, possibly a blanket or bedding.\n\n**Detailed Description:**\n\n*   **Subjects:** There are two cats, both appearing to be tabby cats with brown, grey, and black stripes.\n    *   **Cat 1 (Left):** This cat is positioned on the left side of the frame. It is lying down, facing towards the right. Its fur is clearly visible, showing distinct tabby markings.\n    *   **Cat 2 (Right):** This cat is positioned on the right side of the frame. It is also lying down, facing towards the left. It appears slightly fluffier or perhaps is positioned differently, and its head is lowered towards the surface.\n*   **Setting/Background:** The cats are situated on a vibrant, solid **pink** fabric. The edges of the image suggest the cats are inside a container or enclosure, as there is a darker, possibly reddish-brown or maroon material visible along the top and sides, which looks like the lining of a carrier or box.\n*   **Objects:** There are two small, rectangular objects visible near the top center of the image, resting on the pink fabric between the two cats. These appear to be some kind of small, patterned tags or cards.\n\n**Text Transcription:**\n\nThe text is visible on the two small objects near the top center of the image.\n\n1.  **Left Object:**\n    `999 999 999`\n    `999 999 999`\n    `999 999 999`\n2.  **Right Object:**\n    (The text on the right object is less clear due to angle and resolution, but it appears to have similar numerical or patterned markings, though it is difficult to transcribe with certainty.)\n\n**Overall Impression:**\nThe image has a warm, domestic feel, capturing a moment of rest between two tabby cats in a bright, cozy setting."
+    },
+    {
+     "item": "living-room",
+     "category": "photo",
+     "score": 0.667,
+     "facts": 0.667,
+     "ocr": null,
+     "missed": [
+      "a person standing",
+      "a kitchen or fridge",
+      "a flower in a vase"
+     ],
+     "hallucinations": [],
+     "seconds": 4.4,
+     "tok_per_s": 193,
+     "words": 305,
+     "text": "This is an image of a bright, modern, and warmly decorated living space.\n\n**Room Description:**\nThe room has a warm color palette, featuring light yellow or cream-colored walls. The flooring is made of polished, reddish-brown hardwood, which reflects the light. In the center foreground, there is a light-colored area rug.\n\n**Furniture and Decor:**\n*   **Entertainment Area (Left):** On the left side, there is a low, white media console holding a large, flat-screen television. Above the TV, there is a long, horizontal piece of wall art or shelving with a dark frame and light interior.\n*   **Seating Area (Center):** In the middle of the room, there is a dining or seating arrangement. It features a light-colored table surrounded by several modern chairs upholstered in a reddish-brown or burnt orange fabric.\n*   **Background/Nook (Right):** Towards the back right, there is a built-in or freestanding cabinet unit, possibly a hutch or display cabinet, with wooden doors and shelves.\n*   **Television (Right):** On the far right wall, there is another large, dark flat-screen television mounted or placed against the wall. Below it, there appears to be a fireplace or decorative hearth area, possibly with a reddish glow visible inside.\n\n**Lighting and Windows:**\n*   The room is well-lit, both by natural light and artificial lighting.\n*   On the ceiling, there is a modern light fixture with multiple exposed bulbs arranged in a linear fashion.\n*   There are several large windows along the back wall, letting in bright daylight. The windows have white frames.\n*   The windows are decorated with some greenery or small plants visible through them.\n\n**Color and Atmosphere:**\nThe overall atmosphere is contemporary, comfortable, and inviting. The contrast between the warm wood tones, the light walls, and the pops of color in the seating area is striking.\n\n**Text Transcription:**\nThere is no discernible text visible in the image."
+    },
+    {
+     "item": "old-kitchen",
+     "category": "photo",
+     "score": 0.667,
+     "facts": 0.667,
+     "ocr": null,
+     "missed": [
+      "an apron",
+      "suspenders or braces",
+      "a rolling pin"
+     ],
+     "hallucinations": [],
+     "seconds": 3.9,
+     "tok_per_s": 190,
+     "words": 391,
+     "text": "This is a detailed description of the image:\n\n**Overall Scene:**\nThe image depicts the interior of a rustic, old-fashioned kitchen, likely a historical or period setting, given the style of the equipment and the general ambiance. The kitchen is well-equipped with various cooking implements, pots, and utensils hanging from racks and shelves. The lighting suggests an indoor setting, possibly with some warm, ambient light coming from the upper right.\n\n**Key Elements:**\n\n*   **Cooking Area/Back Wall:** The back wall is dominated by a large, dark cooking range or hearth area. Above this area, there is a collection of hanging pots, pans, and utensils.\n    *   On the left, there are several hanging pots and pans, some appearing to be copper or dark metal.\n    *   In the center and right, there are more hanging items, including what looks like a collection of hanging tools and possibly some decorative elements.\n    *   A prominent feature on the upper right is a light fixture, possibly an antique lamp or lantern, casting a warm glow.\n*   **Countertops and Work Surfaces:** There are wooden countertops visible in the foreground and along the back wall.\n    *   In the foreground, there is a large wooden table or counter where food preparation is taking place. On this surface, there are several items: a flat piece of dough being worked on, a bowl, and some wooden implements.\n    *   The back counter area features various pieces of equipment, including what looks like a stove or range with burners/grates.\n*   **Equipment and Utensils:** The kitchen is cluttered with authentic-looking, vintage cooking gear:\n    *   Various pots and kettles are visible, some stacked or hanging.\n    *   On the shelves, there are various jars, containers, and tools.\n    *   To the right, there are dark metal cabinets or storage units.\n*   **Foreground Activity:** A person's hands are visible in the lower left corner, actively working on the dough on the wooden table, suggesting food preparation is in progress.\n*   **Color and Texture:** The color palette is dominated by warm browns, dark metals, and the natural wood tones of the counters. The textures are rich\u2014the rough wood, the patina on the metal cookware, and the soft texture of the dough.\n\n**Text Transcription:**\nThere is no clearly legible, transcribed text visible in the image. The items hanging or placed on the shelves appear to be objects, not readable signs or labels."
+    },
+    {
+     "item": "stop-sign",
+     "category": "photo",
+     "score": 0.833,
+     "facts": 0.833,
+     "ocr": null,
+     "missed": [
+      "upside down"
+     ],
+     "hallucinations": [],
+     "seconds": 2.5,
+     "tok_per_s": 199,
+     "words": 147,
+     "text": "This is a photograph of a stop sign in an outdoor setting, likely near a road or intersection.\n\n**Detailed Description:**\n\nThe central focus of the image is a standard, octagonal red stop sign. The sign has white text that reads \"STOP\" in capital letters, centered within the red octagon. The sign is mounted on a dark pole, which extends vertically through the frame.\n\nThe background suggests a suburban or semi-rural environment. There are several large, mature trees with dense green foliage surrounding the sign. The lighting suggests it is daytime, likely sunny, as there are bright highlights and shadows.\n\nIn the distance, there are some buildings visible, possibly commercial or residential structures, under a bright blue sky with some scattered white clouds. The ground in the foreground appears to be asphalt or pavement, indicating a roadway.\n\n**Transcription of Text:**\n\nThe text on the stop sign is:\n**STOP**"
+    },
+    {
+     "item": "teddy-bears",
+     "category": "photo",
+     "score": 0.75,
+     "facts": 0.75,
+     "ocr": null,
+     "missed": [
+      "blue fabric"
+     ],
+     "hallucinations": [],
+     "seconds": 2.6,
+     "tok_per_s": 217,
+     "words": 176,
+     "text": "This is a close-up image featuring a collection of several stuffed teddy bears piled together.\n\n**Details:**\n\n*   **Bears:** There are at least four visible bears, each with a different texture and color.\n    *   The bear at the top appears to be a light brown or tan color with a shaggy, textured fur.\n    *   To the left, there is a medium-brown bear with a smoother, shorter pile.\n    *   In the center-right, there is a medium-brown bear with a softer, slightly fluffier texture.\n    *   In the foreground, there is a rich, dark orange or reddish-brown bear with a very dense, shaggy fur.\n    *   Part of another bear, possibly lighter in color, is visible underneath the foreground bear.\n*   **Composition:** The bears are stacked and clustered together, creating a warm, tactile, and cozy composition. The lighting highlights the different textures of the fur.\n*   **Background:** The background appears to be a dark, textured surface, possibly a blanket or fabric, which contrasts with the warm tones of the bears.\n\n**Text Transcription:**\nThere is no discernible text present in the image."
+    },
+    {
+     "item": "tennis-group",
+     "category": "photo",
+     "score": 0.667,
+     "facts": 0.667,
+     "ocr": null,
+     "missed": [
+      "tennis",
+      "rackets"
+     ],
+     "hallucinations": [],
+     "seconds": 3.1,
+     "tok_per_s": 203,
+     "words": 230,
+     "text": "This is a photograph taken outdoors, likely at a park or sports facility, featuring a group of young people gathered around a table.\n\n**Scene Description:**\nThe setting is bright and sunny, with lush green trees forming a backdrop, suggesting a warm day. In the background, there is a tall, dark green screen or fence, possibly part of a sports court enclosure. The ground appears to be a light-colored, paved or hard-packed surface.\n\nThe central focus is a group of about 13-15 children and teenagers, mostly boys, gathered around a table where a trophy is displayed. They are dressed in casual, athletic, or summer clothing.\n\n**People and Action:**\n*   **The Trophy:** A prominent silver trophy is sitting on the table in the center of the group.\n*   **The Group:** The individuals are smiling and appear happy, suggesting they are celebrating an achievement.\n*   **Key Figures:** Several older boys are positioned near the trophy. One boy in the center, wearing a red shirt, seems to be a focal point.\n*   **Attire:** The clothing is varied, ranging from t-shirts and athletic shorts to polo shirts.\n\n**Text Transcription:**\nThere is no discernible text visible in the image itself (such as signs, banners, or writing on clothing).\n\n**Summary:**\nThe image captures a celebratory moment for a group of young athletes, likely after a competition, as they pose with a trophy outdoors on a sunny day."
+    }
+   ],
+   "score": 0.786,
+   "by_category": {
+    "text": 0.996,
+    "counting": 0.667,
+    "video": 0.6,
+    "photo": 0.697
+   },
+   "hallucinations": 1,
+   "median_seconds": 3.0
+  },
+  "gemma4:12b": {
+   "vram_gb": 1.4,
+   "load_seconds": 7.5,
+   "results": [
+    {
+     "item": "invoice",
+     "category": "text",
+     "score": 0.983,
+     "facts": 1.0,
+     "ocr": 0.966,
+     "missed": [],
+     "hallucinations": [],
+     "seconds": 18.4,
+     "tok_per_s": 20,
+     "words": 36,
+     "text": "An image of a black and white invoice. The text is as follows:\n\nINVOICE #4471\nDate: 2026-03-14\n\nBill to: Harbor Supply Co.\n\n3 x Steel bolts M8 $4.50\n1 x Torque wrench $38.00\n\nTOTAL DUE: $51.50"
+    },
+    {
+     "item": "bar-chart",
+     "category": "text",
+     "score": 1.0,
+     "facts": 1.0,
+     "ocr": null,
+     "missed": [],
+     "hallucinations": [],
+     "seconds": 1.9,
+     "tok_per_s": 158,
+     "words": 56,
+     "text": "A bar chart titled \"Sales by region\" shows the sales figures for four different regions: North, South, East, and West. The chart has a light blue background and the bars are a darker shade of blue.\n\nThe values for each region are as follows:\n*   **North:** 42\n*   **South:** 17\n*   **East:** 30\n*   **West:** 8"
+    },
+    {
+     "item": "table",
+     "category": "text",
+     "score": 1.0,
+     "facts": 1.0,
+     "ocr": null,
+     "missed": [],
+     "hallucinations": [],
+     "seconds": 1.7,
+     "tok_per_s": 170,
+     "words": 71,
+     "text": "The image shows a simple data table with three columns and four rows (including the header). The table has a light gray header row and white data rows.\n\nThe text in the table is as follows:\n\n| Name | Age | City |\n| :--- | :--- | :--- |\n| Amara | 34 | Lagos |\n| Bruno | 27 | Porto |\n| Chen | 45 | Xi'an |"
+    },
+    {
+     "item": "count-shapes",
+     "category": "counting",
+     "score": 1.0,
+     "facts": 1.0,
+     "ocr": null,
+     "missed": [],
+     "hallucinations": [],
+     "seconds": 1.1,
+     "tok_per_s": 181,
+     "words": 29,
+     "text": "The image contains a total of 10 shapes of different colors and types. Here is the breakdown:\n\n*   **Red Circles:** 5\n*   **Blue Squares:** 3\n*   **Green Triangles:** 2"
+    },
+    {
+     "item": "code-screenshot",
+     "category": "text",
+     "score": 1.0,
+     "facts": 1.0,
+     "ocr": 1.0,
+     "missed": [],
+     "hallucinations": [],
+     "seconds": 2.6,
+     "tok_per_s": 178,
+     "words": 28,
+     "text": "A black background with white text shows a snippet of Python code.\n\nThe code is as follows:\n\n```python\ndef area(radius):\n    return 3.14159 * radius ** 2\n\nprint(area(2.5))\n```"
+    },
+    {
+     "item": "video",
+     "category": "video",
+     "score": 1.0,
+     "facts": 1.0,
+     "ocr": null,
+     "missed": [],
+     "hallucinations": [],
+     "seconds": 2.6,
+     "tok_per_s": 136,
+     "words": 55,
+     "text": "The video shows a red circle moving from the left side of the screen to the right side. As it moves, the background color changes from white to grey, then to a dark grey, and finally to black. When the red circle reaches the right side of the screen, the word \"GOAL\" appears in yellow."
+    },
+    {
+     "item": "cats",
+     "category": "photo",
+     "score": 0.6,
+     "facts": 0.6,
+     "ocr": null,
+     "missed": [
+      "a couch",
+      "remote controls"
+     ],
+     "hallucinations": [],
+     "seconds": 3.6,
+     "tok_per_s": 141,
+     "words": 152,
+     "text": "A high-angle, medium shot shows two tabby cats lying on a pink surface. The cat on the left is lying on its side, facing the right. Its fur is a mix of black, brown, and tan, with a white patch on its chest. Its eyes are closed, and its paws are tucked in. The cat on the right is lying on its side, facing the left. Its fur is also a mix of black, brown, and tan, with a white patch on its chest. Its eyes are closed, and its paws are tucked in. The pink surface is a soft, plush material. In the background, there is a red surface. There is a white object with blue text on it in the upper left corner of the image. The text on the object is \"S.O.S. / EMERGENCY / CALL / 911\". The lighting is bright and even, and the colors are vibrant."
+    },
+    {
+     "item": "living-room",
+     "category": "photo",
+     "score": 1.0,
+     "facts": 1.0,
+     "ocr": null,
+     "missed": [],
+     "hallucinations": [],
+     "seconds": 3.5,
+     "tok_per_s": 134,
+     "words": 199,
+     "text": "A wide-angle, eye-level shot shows a brightly lit dining room and kitchen area with yellow walls and a polished wood floor. In the foreground, a large flat-screen TV sits on a white media console. To the right of the TV, a small black shelf holds a red candle. A large white radiator is positioned against the wall behind the TV. In the center of the room, a wooden dining table is surrounded by four chairs with red seats and backs. A woman with long brown hair, wearing a black dress, stands at the table, facing away from the camera. In the background, a kitchen area with white cabinets and a black countertop is visible. A large black fireplace is on the right side of the room. A large window is on the left side of the room, and a smaller window is in the center. A white ceiling fan with three lights is hanging from the ceiling. A small white rug is on the floor in the foreground. A small pink table with a white vase and a red flower is in the bottom right corner. The lighting is bright and even, and the colors are warm and inviting."
+    },
+    {
+     "item": "old-kitchen",
+     "category": "photo",
+     "score": 0.556,
+     "facts": 0.556,
+     "ocr": null,
+     "missed": [
+      "copper",
+      "suspenders or braces",
+      "pies or pastry",
+      "a rolling pin"
+     ],
+     "hallucinations": [],
+     "seconds": 4.2,
+     "tok_per_s": 138,
+     "words": 323,
+     "text": "A wide-angle, eye-level shot shows a man in a white chef's coat and white apron standing in a kitchen, facing away from the camera. He is looking at a large black stove with several pots and pans on it. The kitchen is filled with various cooking utensils, including pots, pans, and ladles, hanging from the ceiling and walls. There is a large wooden table in the foreground with several plates of food on it, including a large pizza and a plate of pasta. The walls are made of stone and the floor is made of tile. The lighting is dim, with a few overhead lights and a light on the stove. The overall mood of the image is one of a busy, professional kitchen.\n\nThe man is standing in the center of the frame, his back to the camera. He is wearing a white chef's coat with a white apron over it. He has dark hair and is looking at the stove. The stove is large and black, with several pots and pans on it. The pots and pans are of various sizes and shapes, and they are all made of metal. The kitchen is filled with various cooking utensils, including pots, pans, and ladles. These are hanging from the ceiling and walls, and they are all made of metal. There is a large wooden table in the foreground, and it is covered with several plates of food. One of the plates has a large pizza on it, and another plate has a plate of pasta. The pizza is round and has a golden-brown crust. The pasta is long and thin, and it is covered in a red sauce. The walls of the kitchen are made of stone, and the floor is made of tile. The lighting is dim, with a few overhead lights and a light on the stove. The overall mood of the image is one of a busy, professional kitchen."
+    },
+    {
+     "item": "stop-sign",
+     "category": "photo",
+     "score": 0.833,
+     "facts": 0.833,
+     "ocr": null,
+     "missed": [
+      "upside down"
+     ],
+     "hallucinations": [],
+     "seconds": 3.0,
+     "tok_per_s": 143,
+     "words": 167,
+     "text": "A high-angle, eye-level, medium shot shows a red octagonal stop sign with white lettering that reads \"STOP\" in the center of the frame. The sign is mounted on a tall, thin, grey metal pole that stands in the middle of a paved parking lot. The sign is positioned in front of a row of trees with green leaves and brown trunks. The trees are in the foreground and background of the image. The parking lot is in the foreground and background of the image. The parking lot is paved with grey asphalt and has white lines painted on it. There are several cars parked in the parking lot. The cars are mostly white and silver. There is a white building in the background of the image. The building is two stories tall and has a flat roof. The sky is blue with some white clouds. The lighting is bright and even. The colors are vibrant and saturated. The overall mood of the image is peaceful and serene."
+    },
+    {
+     "item": "teddy-bears",
+     "category": "photo",
+     "score": 0.75,
+     "facts": 0.75,
+     "ocr": null,
+     "missed": [
+      "blue fabric"
+     ],
+     "hallucinations": [],
+     "seconds": 3.1,
+     "tok_per_s": 152,
+     "words": 140,
+     "text": "A close-up, eye-level shot shows three stuffed teddy bears of different sizes and colors. The largest bear, in the upper right, is a light brown, fuzzy teddy bear with a small black nose and eyes. It is facing the left and is slightly tilted towards the camera. The second bear, in the center, is a medium-sized, light brown teddy bear with a small black nose and eyes. It is facing the right and is slightly tilted towards the camera. The third bear, in the lower left, is a small, dark brown teddy bear with a small black nose and eyes. It is facing the right and is slightly tilted towards the camera. The background is a dark brown, textured surface. The lighting is soft and even, and the colors are warm and muted. There is no text in the image."
+    },
+    {
+     "item": "tennis-group",
+     "category": "photo",
+     "score": 0.5,
+     "facts": 0.5,
+     "ocr": null,
+     "missed": [
+      "tennis",
+      "caps",
+      "rackets"
+     ],
+     "hallucinations": [],
+     "seconds": 10.0,
+     "tok_per_s": 180,
+     "words": 1072,
+     "text": "A high-angle, full shot shows a group of nine people, including children and adults, posing for a photo in a sports complex. The group is standing in front of a green fence and a blue net. The people are dressed in athletic wear, including jerseys, shorts, and sneakers.\n\nIn the center of the group, a young man in a red jersey and blue shorts holds a trophy. He is smiling and looking at the camera. To his left, a young boy in a white jersey and blue shorts is smiling and looking at the camera. To his right, a young girl in a blue jersey and white shorts is smiling and looking at the camera.\n\nThe other people in the group are also smiling and looking at the camera. They are all standing close together, and some are holding hands. The background is a sports complex with a green fence and a blue net. The lighting is bright and even, and the colors are vibrant.\n\nThe text in the image is:\n- \"adidas\" on the jerseys of several people\n- \"NIKE\" on the shoes of several people\n- \"REEBOK\" on the shoes of several people\n- \"PUMA\" on the shoes of several people\n- \"ASICS\" on the shoes of several people\n- \"NEW BALANCE\" on the shoes of several people\n- \"UNDER ARMOUR\" on the shoes of several people\n- \"Mizuno\" on the shoes of several people\n- \"Saucony\" on the shoes of several people\n- \"Brooks\" on the shoes of several people\n- \"Hoka\" on the shoes of several people\n- \"On\" on the shoes of several people\n- \"Nike\" on the shoes of several people\n- \"Adidas\" on the shoes of several people\n- \"Reebok\" on the shoes of several people\n- \"Puma\" on the shoes of several people\n- \"Asics\" on the shoes of several people\n- \"New Balance\" on the shoes of several people\n- \"Under Armour\" on the shoes of several people\n- \"Mizuno\" on the shoes of several people\n- \"Saucony\" on the shoes of several people\n- \"Brooks\" on the shoes of several people\n- \"Hoka\" on the shoes of several people\n- \"On\" on the shoes of several people\n- \"Nike\" on the shoes of several people\n- \"Adidas\" on the shoes of several people\n- \"Reebok\" on the shoes of several people\n- \"Puma\" on the shoes of several people\n- \"Asics\" on the shoes of several people\n- \"New Balance\" on the shoes of several people\n- \"Under Armour\" on the shoes of several people\n- \"Mizuno\" on the shoes of several people\n- \"Saucony\" on the shoes of several people\n- \"Brooks\" on the shoes of several people\n- \"Hoka\" on the shoes of several people\n- \"On\" on the shoes of several people\n- \"Nike\" on the shoes of several people\n- \"Adidas\" on the shoes of several people\n- \"Reebok\" on the shoes of several people\n- \"Puma\" on the shoes of several people\n- \"Asics\" on the shoes of several people\n- \"New Balance\" on the shoes of several people\n- \"Under Armour\" on the shoes of several people\n- \"Mizuno\" on the shoes of several people\n- \"Saucony\" on the shoes of several people\n- \"Brooks\" on the shoes of several people\n- \"Hoka\" on the shoes of several people\n- \"On\" on the shoes of several people\n- \"Nike\" on the shoes of several people\n- \"Adidas\" on the shoes of several people\n- \"Reebok\" on the shoes of several people\n- \"Puma\" on the shoes of several people\n- \"Asics\" on the shoes of several people\n- \"New Balance\" on the shoes of several people\n- \"Under Armour\" on the shoes of several people\n- \"Mizuno\" on the shoes of several people\n- \"Saucony\" on the shoes of several people\n- \"Brooks\" on the shoes of several people\n- \"Hoka\" on the shoes of several people\n- \"On\" on the shoes of several people\n- \"Nike\" on the shoes of several people\n- \"Adidas\" on the shoes of several people\n- \"Reebok\" on the shoes of several people\n- \"Puma\" on the shoes of several people\n- \"Asics\" on the shoes of several people\n- \"New Balance\" on the shoes of several people\n- \"Under Armour\" on the shoes of several people\n- \"Mizuno\" on the shoes of several people\n- \"Saucony\" on the shoes of several people\n- \"Brooks\" on the shoes of several people\n- \"Hoka\" on the shoes of several people\n- \"On\" on the shoes of several people\n- \"Nike\" on the shoes of several people\n- \"Adidas\" on the shoes of several people\n- \"Reebok\" on the shoes of several people\n- \"Puma\" on the shoes of several people\n- \"Asics\" on the shoes of several people\n- \"New Balance\" on the shoes of several people\n- \"Under Armour\" on the shoes of several people\n- \"Mizuno\" on the shoes of several people\n- \"Saucony\" on the shoes of several people\n- \"Brooks\" on the shoes of several people\n- \"Hoka\" on the shoes of several people\n- \"On\" on the shoes of several people\n- \"Nike\" on the shoes of several people\n- \"Adidas\" on the shoes of several people\n- \"Reebok\" on the shoes of several people\n- \"Puma\" on the shoes of several people\n- \"Asics\" on the shoes of several people\n- \"New Balance\" on the shoes of several people\n- \"Under Armour\" on the shoes of several people\n- \"Mizuno\" on the shoes of several people\n- \"Saucony\" on the shoes of several people\n- \"Brooks\" on the shoes of several people\n- \"Hoka\" on the shoes of several people\n- \"On\" on the shoes of several people\n- \"Nike\" on the shoes of several people\n- \"Adidas\" on the shoes of several people\n- \"Reebok\" on the shoes of several people\n- \"Puma\" on the shoes of several people\n- \"Asics\" on the shoes of several people\n- \"New Balance\" on the shoes of several people\n- \"Under Armour\" on the shoes of several people\n- \"Mizuno\" on the shoes of several people\n- \"Saucony\" on the shoes of several people\n- \"Brooks\" on the shoes of several people\n- \"Hoka\" on the shoes of several people\n- \"On\" on the shoes of several people\n- \"Nike\" on the shoes of several people\n- \"Adidas\" on the shoes of several people\n- \"Reebok\" on"
+    }
+   ],
+   "score": 0.852,
+   "by_category": {
+    "text": 0.996,
+    "counting": 1.0,
+    "video": 1.0,
+    "photo": 0.707
+   },
+   "hallucinations": 0,
+   "median_seconds": 3.1
+  }
+ }
+}

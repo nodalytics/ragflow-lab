@@ -1,0 +1,1 @@
+Implement parse_duration in duration.py: it takes an ISO 8601 duration like P3DT4H5M or PT90S or P1W and returns the total number of seconds as an int. Support W, D, H, M (minutes, after T) and S. Raise ValueError for anything invalid, such as an empty string, a missing P, a T with nothing after it, or units out of order.

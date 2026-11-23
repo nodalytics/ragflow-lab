@@ -1,0 +1,452 @@
+[
+ {
+  "id": "invoice",
+  "files": [
+   "gen-invoice.png"
+  ],
+  "prompt": "Describe this image in detail. Transcribe any text in it exactly.",
+  "ocr": [
+   "INVOICE #4471",
+   "Date: 2026-03-14",
+   "Bill to: Harbor Supply Co.",
+   "3 x Steel bolts M8      $4.50",
+   "1 x Torque wrench       $38.00",
+   "TOTAL DUE: $51.50"
+  ],
+  "facts": [
+   [
+    "an invoice",
+    "invoice"
+   ],
+   [
+    "total 51.50",
+    "51\\.50"
+   ],
+   [
+    "two items",
+    "bolt.*wrench|wrench.*bolt"
+   ]
+  ],
+  "hallucinations": []
+ },
+ {
+  "id": "bar-chart",
+  "files": [
+   "gen-chart.png"
+  ],
+  "prompt": "Describe this image in detail. Transcribe any text in it exactly. If it is a chart, give its values.",
+  "ocr": [],
+  "facts": [
+   [
+    "a bar chart",
+    "bar"
+   ],
+   [
+    "the title",
+    "sales by region"
+   ],
+   [
+    "North 42",
+    "north[^\\n\\d]{0,100}42|42[^\\n\\d]{0,100}north"
+   ],
+   [
+    "South 17",
+    "south[^\\n\\d]{0,100}17|17[^\\n\\d]{0,100}south"
+   ],
+   [
+    "East 30",
+    "east[^\\n\\d]{0,100}30|30[^\\n\\d]{0,100}east"
+   ],
+   [
+    "West 8",
+    "west[^\\n\\d]{0,100}\\b8\\b|\\b8\\b[^\\n\\d]{0,100}west"
+   ]
+  ],
+  "hallucinations": [
+   [
+    "a line chart or pie",
+    "pie chart|line chart"
+   ]
+  ]
+ },
+ {
+  "id": "table",
+  "files": [
+   "gen-table.png"
+  ],
+  "prompt": "Describe this image in detail. Transcribe any text in it exactly. If it is a table, give every row.",
+  "ocr": [],
+  "facts": [
+   [
+    "a table",
+    "table"
+   ],
+   [
+    "Amara 34 Lagos",
+    "amara\\W{0,20}34\\W{0,20}lagos"
+   ],
+   [
+    "Bruno 27 Porto",
+    "bruno\\W{0,20}27\\W{0,20}porto"
+   ],
+   [
+    "Chen 45 Xi'an",
+    "chen\\W{0,20}45\\W{0,20}xi.?an"
+   ]
+  ],
+  "hallucinations": []
+ },
+ {
+  "id": "count-shapes",
+  "files": [
+   "gen-shapes.png"
+  ],
+  "prompt": "Describe this image. How many shapes of each kind and colour are there?",
+  "ocr": [],
+  "facts": [
+   [
+    "5 red circles",
+    "(?:5|five)\\W{0,3}(?:red\\W{0,3})?circles?|red circles?\\D{0,20}(?:5|five)"
+   ],
+   [
+    "3 blue squares",
+    "(?:3|three)\\W{0,3}(?:blue\\W{0,3})?squares?|blue squares?\\D{0,20}(?:3|three)"
+   ],
+   [
+    "2 green triangles",
+    "(?:2|two)\\W{0,3}(?:green\\W{0,3})?triangles?|green triangles?\\D{0,20}(?:2|two)"
+   ]
+  ],
+  "hallucinations": [
+   [
+    "a shape that is not there",
+    "star|hexagon|yellow"
+   ]
+  ]
+ },
+ {
+  "id": "code-screenshot",
+  "files": [
+   "gen-code.png"
+  ],
+  "prompt": "Describe this image in detail. Transcribe any text in it exactly.",
+  "ocr": [
+   "def area(radius):",
+   "    return 3.14159 * radius ** 2",
+   "print(area(2.5))"
+  ],
+  "facts": [
+   [
+    "python code",
+    "python"
+   ],
+   [
+    "a function computing an area",
+    "area"
+   ]
+  ],
+  "hallucinations": []
+ },
+ {
+  "id": "video",
+  "files": [
+   "gen-video-frame0.png",
+   "gen-video-frame1.png",
+   "gen-video-frame2.png",
+   "gen-video-frame3.png",
+   "gen-video-frame4.png",
+   "gen-video-frame5.png",
+   "gen-video-frame6.png",
+   "gen-video-frame7.png"
+  ],
+  "video": "gen-video.mp4",
+  "prompt": "These are 8 frames sampled in order from a short video. Describe what happens in the video, in order.",
+  "ocr": [],
+  "facts": [
+   [
+    "a red ball",
+    "red (?:ball|circle|sphere|dot)"
+   ],
+   [
+    "it moves left to right",
+    "left\\W.{0,60}right|rightward|to the right"
+   ],
+   [
+    "GOAL appears",
+    "goal"
+   ],
+   [
+    "the background darkens",
+    "dark|black|night|navy|fades?"
+   ],
+   [
+    "GOAL comes after the movement",
+    "^(?:(?!goal).)*(?:mov|cross|right).*goal"
+   ]
+  ],
+  "hallucinations": [
+   [
+    "a person or a field",
+    "player|person|people|field|pitch"
+   ]
+  ]
+ },
+ {
+  "id": "cats",
+  "files": [
+   "coco-000000039769.jpg"
+  ],
+  "prompt": "Describe this image in detail. Transcribe any text in it exactly.",
+  "ocr": [],
+  "facts": [
+   [
+    "two cats",
+    "two (?:\\w+ )?(?:cats|kittens)|2 cats"
+   ],
+   [
+    "asleep or lying",
+    "sleep|lying|lie|rest|napp"
+   ],
+   [
+    "a pink blanket",
+    "pink|magenta"
+   ],
+   [
+    "a couch",
+    "couch|sofa"
+   ],
+   [
+    "remote controls",
+    "remote"
+   ]
+  ],
+  "hallucinations": [
+   [
+    "a dog",
+    "\\bdogs?\\b|puppy"
+   ]
+  ],
+  "source": "http://images.cocodataset.org/val2017/000000039769.jpg"
+ },
+ {
+  "id": "living-room",
+  "files": [
+   "coco-000000000139.jpg"
+  ],
+  "prompt": "Describe this image in detail. Transcribe any text in it exactly.",
+  "ocr": [],
+  "facts": [
+   [
+    "a television",
+    "\\btv\\b|television"
+   ],
+   [
+    "a dining table",
+    "table"
+   ],
+   [
+    "chairs",
+    "chair"
+   ],
+   [
+    "windows",
+    "window"
+   ],
+   [
+    "a person standing",
+    "woman|person|lady|someone|figure"
+   ],
+   [
+    "a kitchen or fridge",
+    "kitchen|fridge|refrigerator"
+   ],
+   [
+    "a fireplace",
+    "fireplace|hearth"
+   ],
+   [
+    "a flower in a vase",
+    "vase|flower"
+   ],
+   [
+    "a wooden floor",
+    "wood\\w*\\s+(?:\\w+\\s+)?floor|hardwood"
+   ]
+  ],
+  "hallucinations": [
+   [
+    "a dog or a cat",
+    "\\bdogs?\\b|\\bcats?\\b"
+   ]
+  ],
+  "source": "http://images.cocodataset.org/val2017/000000000139.jpg"
+ },
+ {
+  "id": "old-kitchen",
+  "files": [
+   "coco-000000397133.jpg"
+  ],
+  "prompt": "Describe this image in detail. Transcribe any text in it exactly.",
+  "ocr": [],
+  "facts": [
+   [
+    "a kitchen",
+    "kitchen"
+   ],
+   [
+    "hanging pots and pans",
+    "pots|pans"
+   ],
+   [
+    "copper",
+    "copper"
+   ],
+   [
+    "a person with their back turned",
+    "back|facing away|from behind"
+   ],
+   [
+    "an apron",
+    "apron"
+   ],
+   [
+    "suspenders or braces",
+    "suspender|brace"
+   ],
+   [
+    "pies or pastry",
+    "pie|pastr|dough|tart"
+   ],
+   [
+    "a rolling pin",
+    "rolling pin"
+   ],
+   [
+    "a stove",
+    "stove|oven|range"
+   ]
+  ],
+  "hallucinations": [
+   [
+    "a refrigerator or microwave",
+    "fridge|refrigerator|microwave"
+   ]
+  ],
+  "source": "http://images.cocodataset.org/val2017/000000397133.jpg"
+ },
+ {
+  "id": "stop-sign",
+  "files": [
+   "coco-000000000724.jpg"
+  ],
+  "prompt": "Describe this image in detail. Transcribe any text in it exactly.",
+  "ocr": [],
+  "facts": [
+   [
+    "a stop sign",
+    "stop sign"
+   ],
+   [
+    "upside down",
+    "upside[- ]down|inverted|rotated|flipped"
+   ],
+   [
+    "trees",
+    "tree"
+   ],
+   [
+    "a road",
+    "road|street|parking"
+   ],
+   [
+    "a blue sky",
+    "sky"
+   ],
+   [
+    "a building",
+    "building|house"
+   ]
+  ],
+  "hallucinations": [
+   [
+    "a person",
+    "\\bperson\\b|\\bpeople\\b|pedestrian"
+   ]
+  ],
+  "source": "http://images.cocodataset.org/val2017/000000000724.jpg"
+ },
+ {
+  "id": "teddy-bears",
+  "files": [
+   "coco-000000000776.jpg"
+  ],
+  "prompt": "Describe this image in detail. Transcribe any text in it exactly.",
+  "ocr": [],
+  "facts": [
+   [
+    "teddy bears",
+    "teddy|stuffed (?:bear|animal)|plush"
+   ],
+   [
+    "several of them",
+    "three|four|3|4|several|group|multiple"
+   ],
+   [
+    "brown",
+    "brown|golden|tan|orange"
+   ],
+   [
+    "blue fabric",
+    "blue"
+   ]
+  ],
+  "hallucinations": [
+   [
+    "a real animal",
+    "\\breal (?:bear|animal)|\\bdog\\b"
+   ]
+  ],
+  "source": "http://images.cocodataset.org/val2017/000000000776.jpg"
+ },
+ {
+  "id": "tennis-group",
+  "files": [
+   "coco-000000001000.jpg"
+  ],
+  "prompt": "Describe this image in detail. Transcribe any text in it exactly.",
+  "ocr": [],
+  "facts": [
+   [
+    "a group of children",
+    "child|kid|boy|girl|young"
+   ],
+   [
+    "tennis",
+    "tennis"
+   ],
+   [
+    "a trophy",
+    "trophy|award|cup"
+   ],
+   [
+    "caps",
+    "cap|hat"
+   ],
+   [
+    "rackets",
+    "racket|racquet"
+   ],
+   [
+    "a fence or net",
+    "fence|net"
+   ]
+  ],
+  "hallucinations": [
+   [
+    "adults only",
+    "group of (?:adults|men|women)\\b"
+   ]
+  ],
+  "source": "http://images.cocodataset.org/val2017/000000001000.jpg"
+ }
+]

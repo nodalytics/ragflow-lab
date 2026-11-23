@@ -21,7 +21,7 @@ set -euo pipefail
 
 CMD=${1:-status}
 C=${CODER_DIR:-$HOME/coder}
-MODELS=${CODER_MODELS:-qwen3.8-abliterated:27b=hf.co/huihui-ai/Huihui-Qwen3.8-27B-abliterated-GGUF:Q4_K_M qwen3.8:27b}
+MODELS=${CODER_MODELS:-qwen3.8:27b qwen3.8-abliterated:27b=hf.co/huihui-ai/Huihui-Qwen3.8-27B-abliterated-GGUF:Q4_K_M}
 GPU=${CODER_GPU:-4090}
 CTX=${CODER_CONTEXT:-98304}
 PORT=${CODER_PORT:-11435}

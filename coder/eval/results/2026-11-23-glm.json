@@ -1,0 +1,331 @@
+{
+ "models": [
+  "glm-4.7-flash:latest"
+ ],
+ "reps": 2,
+ "tasks": [
+  "cli-json-flag",
+  "config-merge",
+  "fix-pagination",
+  "fix-timezone-bug",
+  "hard-apply-patch",
+  "hard-async-retry",
+  "hard-cron",
+  "hard-dependency-order",
+  "hard-split-money",
+  "inventory-rules",
+  "iso-duration",
+  "lru-cache",
+  "rename-across-files",
+  "speed-up-duplicates",
+  "sql-injection"
+ ],
+ "runs": [
+  {
+   "model": "glm-4.7-flash:latest",
+   "task": "cli-json-flag",
+   "rep": 0,
+   "pass": true,
+   "tests_passed": 2,
+   "tests_failed": 0,
+   "seconds": 105.2,
+   "timed_out": false
+  },
+  {
+   "model": "glm-4.7-flash:latest",
+   "task": "config-merge",
+   "rep": 0,
+   "pass": false,
+   "tests_passed": 1,
+   "tests_failed": 3,
+   "seconds": 65.4,
+   "timed_out": false
+  },
+  {
+   "model": "glm-4.7-flash:latest",
+   "task": "fix-pagination",
+   "rep": 0,
+   "pass": false,
+   "tests_passed": 3,
+   "tests_failed": 1,
+   "seconds": 87.1,
+   "timed_out": false
+  },
+  {
+   "model": "glm-4.7-flash:latest",
+   "task": "fix-timezone-bug",
+   "rep": 0,
+   "pass": true,
+   "tests_passed": 2,
+   "tests_failed": 0,
+   "seconds": 84.1,
+   "timed_out": false
+  },
+  {
+   "model": "glm-4.7-flash:latest",
+   "task": "hard-apply-patch",
+   "rep": 0,
+   "pass": false,
+   "tests_passed": 0,
+   "tests_failed": 7,
+   "seconds": 600.2,
+   "timed_out": true
+  },
+  {
+   "model": "glm-4.7-flash:latest",
+   "task": "hard-async-retry",
+   "rep": 0,
+   "pass": true,
+   "tests_passed": 6,
+   "tests_failed": 0,
+   "seconds": 102.1,
+   "timed_out": false
+  },
+  {
+   "model": "glm-4.7-flash:latest",
+   "task": "hard-cron",
+   "rep": 0,
+   "pass": false,
+   "tests_passed": 10,
+   "tests_failed": 5,
+   "seconds": 242.0,
+   "timed_out": false
+  },
+  {
+   "model": "glm-4.7-flash:latest",
+   "task": "hard-dependency-order",
+   "rep": 0,
+   "pass": false,
+   "tests_passed": 0,
+   "tests_failed": 6,
+   "seconds": 600.1,
+   "timed_out": true
+  },
+  {
+   "model": "glm-4.7-flash:latest",
+   "task": "hard-split-money",
+   "rep": 0,
+   "pass": false,
+   "tests_passed": 4,
+   "tests_failed": 4,
+   "seconds": 141.5,
+   "timed_out": false
+  },
+  {
+   "model": "glm-4.7-flash:latest",
+   "task": "inventory-rules",
+   "rep": 0,
+   "pass": false,
+   "tests_passed": 4,
+   "tests_failed": 1,
+   "seconds": 600.0,
+   "timed_out": true
+  },
+  {
+   "model": "glm-4.7-flash:latest",
+   "task": "iso-duration",
+   "rep": 0,
+   "pass": false,
+   "tests_passed": 14,
+   "tests_failed": 4,
+   "seconds": 600.2,
+   "timed_out": true
+  },
+  {
+   "model": "glm-4.7-flash:latest",
+   "task": "lru-cache",
+   "rep": 0,
+   "pass": false,
+   "tests_passed": 2,
+   "tests_failed": 2,
+   "seconds": 400.0,
+   "timed_out": false
+  },
+  {
+   "model": "glm-4.7-flash:latest",
+   "task": "rename-across-files",
+   "rep": 0,
+   "pass": true,
+   "tests_passed": 4,
+   "tests_failed": 0,
+   "seconds": 600.1,
+   "timed_out": true
+  },
+  {
+   "model": "glm-4.7-flash:latest",
+   "task": "speed-up-duplicates",
+   "rep": 0,
+   "pass": false,
+   "tests_passed": 1,
+   "tests_failed": 1,
+   "seconds": 401.6,
+   "timed_out": false
+  },
+  {
+   "model": "glm-4.7-flash:latest",
+   "task": "sql-injection",
+   "rep": 0,
+   "pass": true,
+   "tests_passed": 4,
+   "tests_failed": 0,
+   "seconds": 200.1,
+   "timed_out": false
+  },
+  {
+   "model": "glm-4.7-flash:latest",
+   "task": "cli-json-flag",
+   "rep": 1,
+   "pass": true,
+   "tests_passed": 2,
+   "tests_failed": 0,
+   "seconds": 333.8,
+   "timed_out": false
+  },
+  {
+   "model": "glm-4.7-flash:latest",
+   "task": "config-merge",
+   "rep": 1,
+   "pass": false,
+   "tests_passed": 1,
+   "tests_failed": 3,
+   "seconds": 403.9,
+   "timed_out": false
+  },
+  {
+   "model": "glm-4.7-flash:latest",
+   "task": "fix-pagination",
+   "rep": 1,
+   "pass": false,
+   "tests_passed": 3,
+   "tests_failed": 1,
+   "seconds": 207.0,
+   "timed_out": false
+  },
+  {
+   "model": "glm-4.7-flash:latest",
+   "task": "fix-timezone-bug",
+   "rep": 1,
+   "pass": true,
+   "tests_passed": 2,
+   "tests_failed": 0,
+   "seconds": 216.2,
+   "timed_out": false
+  },
+  {
+   "model": "glm-4.7-flash:latest",
+   "task": "hard-apply-patch",
+   "rep": 1,
+   "pass": false,
+   "tests_passed": 0,
+   "tests_failed": 1,
+   "seconds": 153.1,
+   "timed_out": false
+  },
+  {
+   "model": "glm-4.7-flash:latest",
+   "task": "hard-async-retry",
+   "rep": 1,
+   "pass": false,
+   "tests_passed": 2,
+   "tests_failed": 4,
+   "seconds": 61.8,
+   "timed_out": false
+  },
+  {
+   "model": "glm-4.7-flash:latest",
+   "task": "hard-cron",
+   "rep": 1,
+   "pass": false,
+   "tests_passed": 9,
+   "tests_failed": 6,
+   "seconds": 600.1,
+   "timed_out": true
+  },
+  {
+   "model": "glm-4.7-flash:latest",
+   "task": "hard-dependency-order",
+   "rep": 1,
+   "pass": false,
+   "tests_passed": 0,
+   "tests_failed": 1,
+   "seconds": 259.7,
+   "timed_out": false
+  },
+  {
+   "model": "glm-4.7-flash:latest",
+   "task": "hard-split-money",
+   "rep": 1,
+   "pass": false,
+   "tests_passed": 2,
+   "tests_failed": 6,
+   "seconds": 67.6,
+   "timed_out": false
+  },
+  {
+   "model": "glm-4.7-flash:latest",
+   "task": "inventory-rules",
+   "rep": 1,
+   "pass": true,
+   "tests_passed": 5,
+   "tests_failed": 0,
+   "seconds": 69.9,
+   "timed_out": false
+  },
+  {
+   "model": "glm-4.7-flash:latest",
+   "task": "iso-duration",
+   "rep": 1,
+   "pass": false,
+   "tests_passed": 11,
+   "tests_failed": 7,
+   "seconds": 106.8,
+   "timed_out": false
+  },
+  {
+   "model": "glm-4.7-flash:latest",
+   "task": "lru-cache",
+   "rep": 1,
+   "pass": true,
+   "tests_passed": 4,
+   "tests_failed": 0,
+   "seconds": 249.0,
+   "timed_out": false
+  },
+  {
+   "model": "glm-4.7-flash:latest",
+   "task": "rename-across-files",
+   "rep": 1,
+   "pass": true,
+   "tests_passed": 4,
+   "tests_failed": 0,
+   "seconds": 422.2,
+   "timed_out": false
+  },
+  {
+   "model": "glm-4.7-flash:latest",
+   "task": "speed-up-duplicates",
+   "rep": 1,
+   "pass": false,
+   "tests_passed": 1,
+   "tests_failed": 1,
+   "seconds": 176.5,
+   "timed_out": false
+  },
+  {
+   "model": "glm-4.7-flash:latest",
+   "task": "sql-injection",
+   "rep": 1,
+   "pass": true,
+   "tests_passed": 4,
+   "tests_failed": 0,
+   "seconds": 379.3,
+   "timed_out": false
+  }
+ ],
+ "load": {
+  "glm-4.7-flash:latest": {
+   "seconds": 14.5,
+   "on_gpu": 1.0
+  }
+ }
+}

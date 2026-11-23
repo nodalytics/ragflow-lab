@@ -1,0 +1,1 @@
+users.py builds SQL by pasting user input into the query string. Fix it so it is safe against SQL injection, keeping the same behaviour for normal input.

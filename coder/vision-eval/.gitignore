@@ -1,0 +1,3 @@
+# COCO photos keep their owners' licences: make_media.py downloads them by URL
+media/coco-*.jpg
+__pycache__/

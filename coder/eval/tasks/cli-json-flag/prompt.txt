@@ -1,0 +1,1 @@
+Add a --json flag to wc.py: with it, print a JSON object {"lines": L, "words": W, "chars": C} instead of the plain text output. Without it, the output must not change.

@@ -6,7 +6,7 @@ continuous deployment on the lab itself. Which ones run is set in [`deploy/servi
 | Service | Status | Address | What it is |
 |---|---|---|---|
 | **RAGFlow** | **disabled** since 2026-11-23 (torn down, no data kept) | https://ragflow.stbfarm.org | [RAGFlow](https://github.com/infiniflow/ragflow), a retrieval engine: it reads documents (PDF, Word, tables, scans), indexes them by their layout, and answers questions about them with a citation for every answer. Web UI, HTTP API, an OpenAI-compatible chat API and an MCP endpoint. |
-| **Coding models** | running | https://coder.stbfarm.org/v1 | An uncensored (abliterated) Qwen3.8 27B by default, and the stock one, on the lab's RTX 4090, behind per-person API keys. For opencode, VS Code agents, Claude Code and any OpenAI client: [coder/README.md](coder/README.md). |
+| **Coding models** | running | https://coder.stbfarm.org/v1 | Qwen3.8 27B by default, and an uncensored (abliterated) copy, on the lab's RTX 4090, behind per-person API keys. For opencode, VS Code agents, Claude Code and any OpenAI client: [coder/README.md](coder/README.md). |
 
 [integration.md](integration.md) is the assessment of RAGFlow: what it is, what it costs to run, and when it is
 worth it.

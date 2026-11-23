@@ -1,0 +1,226 @@
+{
+ "models": [
+  "qwen3.8-abliterated:27b",
+  "qwen3.8:27b"
+ ],
+ "reps": 2,
+ "tasks": [
+  "hard-apply-patch",
+  "hard-async-retry",
+  "hard-cron",
+  "hard-dependency-order",
+  "hard-split-money"
+ ],
+ "runs": [
+  {
+   "model": "qwen3.8-abliterated:27b",
+   "task": "hard-apply-patch",
+   "rep": 0,
+   "pass": false,
+   "tests_passed": 0,
+   "tests_failed": 7,
+   "seconds": 393.2,
+   "timed_out": false
+  },
+  {
+   "model": "qwen3.8-abliterated:27b",
+   "task": "hard-async-retry",
+   "rep": 0,
+   "pass": true,
+   "tests_passed": 6,
+   "tests_failed": 0,
+   "seconds": 391.8,
+   "timed_out": false
+  },
+  {
+   "model": "qwen3.8-abliterated:27b",
+   "task": "hard-cron",
+   "rep": 0,
+   "pass": true,
+   "tests_passed": 15,
+   "tests_failed": 0,
+   "seconds": 600.1,
+   "timed_out": true
+  },
+  {
+   "model": "qwen3.8-abliterated:27b",
+   "task": "hard-dependency-order",
+   "rep": 0,
+   "pass": true,
+   "tests_passed": 6,
+   "tests_failed": 0,
+   "seconds": 600.1,
+   "timed_out": true
+  },
+  {
+   "model": "qwen3.8-abliterated:27b",
+   "task": "hard-split-money",
+   "rep": 0,
+   "pass": true,
+   "tests_passed": 8,
+   "tests_failed": 0,
+   "seconds": 531.0,
+   "timed_out": false
+  },
+  {
+   "model": "qwen3.8-abliterated:27b",
+   "task": "hard-apply-patch",
+   "rep": 1,
+   "pass": false,
+   "tests_passed": 0,
+   "tests_failed": 7,
+   "seconds": 391.2,
+   "timed_out": false
+  },
+  {
+   "model": "qwen3.8-abliterated:27b",
+   "task": "hard-async-retry",
+   "rep": 1,
+   "pass": true,
+   "tests_passed": 6,
+   "tests_failed": 0,
+   "seconds": 529.8,
+   "timed_out": false
+  },
+  {
+   "model": "qwen3.8-abliterated:27b",
+   "task": "hard-cron",
+   "rep": 1,
+   "pass": false,
+   "tests_passed": 0,
+   "tests_failed": 15,
+   "seconds": 385.6,
+   "timed_out": false
+  },
+  {
+   "model": "qwen3.8-abliterated:27b",
+   "task": "hard-dependency-order",
+   "rep": 1,
+   "pass": true,
+   "tests_passed": 6,
+   "tests_failed": 0,
+   "seconds": 600.3,
+   "timed_out": true
+  },
+  {
+   "model": "qwen3.8-abliterated:27b",
+   "task": "hard-split-money",
+   "rep": 1,
+   "pass": true,
+   "tests_passed": 8,
+   "tests_failed": 0,
+   "seconds": 354.9,
+   "timed_out": false
+  },
+  {
+   "model": "qwen3.8:27b",
+   "task": "hard-apply-patch",
+   "rep": 0,
+   "pass": false,
+   "tests_passed": 0,
+   "tests_failed": 7,
+   "seconds": 224.0,
+   "timed_out": false
+  },
+  {
+   "model": "qwen3.8:27b",
+   "task": "hard-async-retry",
+   "rep": 0,
+   "pass": true,
+   "tests_passed": 6,
+   "tests_failed": 0,
+   "seconds": 105.8,
+   "timed_out": false
+  },
+  {
+   "model": "qwen3.8:27b",
+   "task": "hard-cron",
+   "rep": 0,
+   "pass": false,
+   "tests_passed": 0,
+   "tests_failed": 15,
+   "seconds": 219.9,
+   "timed_out": false
+  },
+  {
+   "model": "qwen3.8:27b",
+   "task": "hard-dependency-order",
+   "rep": 0,
+   "pass": true,
+   "tests_passed": 6,
+   "tests_failed": 0,
+   "seconds": 186.0,
+   "timed_out": false
+  },
+  {
+   "model": "qwen3.8:27b",
+   "task": "hard-split-money",
+   "rep": 0,
+   "pass": true,
+   "tests_passed": 8,
+   "tests_failed": 0,
+   "seconds": 90.4,
+   "timed_out": false
+  },
+  {
+   "model": "qwen3.8:27b",
+   "task": "hard-apply-patch",
+   "rep": 1,
+   "pass": false,
+   "tests_passed": 0,
+   "tests_failed": 7,
+   "seconds": 239.4,
+   "timed_out": false
+  },
+  {
+   "model": "qwen3.8:27b",
+   "task": "hard-async-retry",
+   "rep": 1,
+   "pass": true,
+   "tests_passed": 6,
+   "tests_failed": 0,
+   "seconds": 143.6,
+   "timed_out": false
+  },
+  {
+   "model": "qwen3.8:27b",
+   "task": "hard-cron",
+   "rep": 1,
+   "pass": true,
+   "tests_passed": 15,
+   "tests_failed": 0,
+   "seconds": 167.2,
+   "timed_out": false
+  },
+  {
+   "model": "qwen3.8:27b",
+   "task": "hard-dependency-order",
+   "rep": 1,
+   "pass": true,
+   "tests_passed": 6,
+   "tests_failed": 0,
+   "seconds": 231.5,
+   "timed_out": false
+  },
+  {
+   "model": "qwen3.8:27b",
+   "task": "hard-split-money",
+   "rep": 1,
+   "pass": true,
+   "tests_passed": 8,
+   "tests_failed": 0,
+   "seconds": 222.9,
+   "timed_out": false
+  }
+ ],
+ "load": {
+  "qwen3.8-abliterated:27b": {
+   "seconds": 5.8,
+   "on_gpu": 1.0
+  },
+  "qwen3.8:27b": {
+   "seconds": 5.9,
+   "on_gpu": 1.0
+  }
+ }
+}

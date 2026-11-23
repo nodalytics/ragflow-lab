@@ -1,0 +1,1 @@
+find_duplicates in dupes.py is far too slow on large inputs. Make it fast without changing what it returns.

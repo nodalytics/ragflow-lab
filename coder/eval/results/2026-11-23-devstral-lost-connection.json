@@ -1,0 +1,331 @@
+{
+ "models": [
+  "devstral-small-2:24b"
+ ],
+ "reps": 2,
+ "tasks": [
+  "cli-json-flag",
+  "config-merge",
+  "fix-pagination",
+  "fix-timezone-bug",
+  "hard-apply-patch",
+  "hard-async-retry",
+  "hard-cron",
+  "hard-dependency-order",
+  "hard-split-money",
+  "inventory-rules",
+  "iso-duration",
+  "lru-cache",
+  "rename-across-files",
+  "speed-up-duplicates",
+  "sql-injection"
+ ],
+ "runs": [
+  {
+   "model": "devstral-small-2:24b",
+   "task": "cli-json-flag",
+   "rep": 0,
+   "pass": true,
+   "tests_passed": 2,
+   "tests_failed": 0,
+   "seconds": 75.4,
+   "timed_out": false
+  },
+  {
+   "model": "devstral-small-2:24b",
+   "task": "config-merge",
+   "rep": 0,
+   "pass": false,
+   "tests_passed": 1,
+   "tests_failed": 3,
+   "seconds": 58.2,
+   "timed_out": false
+  },
+  {
+   "model": "devstral-small-2:24b",
+   "task": "fix-pagination",
+   "rep": 0,
+   "pass": false,
+   "tests_passed": 3,
+   "tests_failed": 1,
+   "seconds": 61.4,
+   "timed_out": false
+  },
+  {
+   "model": "devstral-small-2:24b",
+   "task": "fix-timezone-bug",
+   "rep": 0,
+   "pass": true,
+   "tests_passed": 2,
+   "tests_failed": 0,
+   "seconds": 63.3,
+   "timed_out": false
+  },
+  {
+   "model": "devstral-small-2:24b",
+   "task": "hard-apply-patch",
+   "rep": 0,
+   "pass": false,
+   "tests_passed": 1,
+   "tests_failed": 6,
+   "seconds": 278.9,
+   "timed_out": false
+  },
+  {
+   "model": "devstral-small-2:24b",
+   "task": "hard-async-retry",
+   "rep": 0,
+   "pass": false,
+   "tests_passed": 5,
+   "tests_failed": 1,
+   "seconds": 127.4,
+   "timed_out": false
+  },
+  {
+   "model": "devstral-small-2:24b",
+   "task": "hard-cron",
+   "rep": 0,
+   "pass": false,
+   "tests_passed": 0,
+   "tests_failed": 1,
+   "seconds": 380.6,
+   "timed_out": false
+  },
+  {
+   "model": "devstral-small-2:24b",
+   "task": "hard-dependency-order",
+   "rep": 0,
+   "pass": false,
+   "tests_passed": 0,
+   "tests_failed": 6,
+   "seconds": 3.8,
+   "timed_out": false
+  },
+  {
+   "model": "devstral-small-2:24b",
+   "task": "hard-split-money",
+   "rep": 0,
+   "pass": false,
+   "tests_passed": 0,
+   "tests_failed": 8,
+   "seconds": 3.9,
+   "timed_out": false
+  },
+  {
+   "model": "devstral-small-2:24b",
+   "task": "inventory-rules",
+   "rep": 0,
+   "pass": false,
+   "tests_passed": 0,
+   "tests_failed": 5,
+   "seconds": 3.8,
+   "timed_out": false
+  },
+  {
+   "model": "devstral-small-2:24b",
+   "task": "iso-duration",
+   "rep": 0,
+   "pass": false,
+   "tests_passed": 0,
+   "tests_failed": 18,
+   "seconds": 3.8,
+   "timed_out": false
+  },
+  {
+   "model": "devstral-small-2:24b",
+   "task": "lru-cache",
+   "rep": 0,
+   "pass": false,
+   "tests_passed": 0,
+   "tests_failed": 4,
+   "seconds": 4.5,
+   "timed_out": false
+  },
+  {
+   "model": "devstral-small-2:24b",
+   "task": "rename-across-files",
+   "rep": 0,
+   "pass": false,
+   "tests_passed": 0,
+   "tests_failed": 1,
+   "seconds": 3.6,
+   "timed_out": false
+  },
+  {
+   "model": "devstral-small-2:24b",
+   "task": "speed-up-duplicates",
+   "rep": 0,
+   "pass": false,
+   "tests_passed": 0,
+   "tests_failed": 1,
+   "seconds": 3.6,
+   "timed_out": false
+  },
+  {
+   "model": "devstral-small-2:24b",
+   "task": "sql-injection",
+   "rep": 0,
+   "pass": false,
+   "tests_passed": 1,
+   "tests_failed": 3,
+   "seconds": 4.4,
+   "timed_out": false
+  },
+  {
+   "model": "devstral-small-2:24b",
+   "task": "cli-json-flag",
+   "rep": 1,
+   "pass": false,
+   "tests_passed": 1,
+   "tests_failed": 1,
+   "seconds": 3.7,
+   "timed_out": false
+  },
+  {
+   "model": "devstral-small-2:24b",
+   "task": "config-merge",
+   "rep": 1,
+   "pass": false,
+   "tests_passed": 0,
+   "tests_failed": 4,
+   "seconds": 4.1,
+   "timed_out": false
+  },
+  {
+   "model": "devstral-small-2:24b",
+   "task": "fix-pagination",
+   "rep": 1,
+   "pass": false,
+   "tests_passed": 1,
+   "tests_failed": 3,
+   "seconds": 4.2,
+   "timed_out": false
+  },
+  {
+   "model": "devstral-small-2:24b",
+   "task": "fix-timezone-bug",
+   "rep": 1,
+   "pass": false,
+   "tests_passed": 1,
+   "tests_failed": 1,
+   "seconds": 3.5,
+   "timed_out": false
+  },
+  {
+   "model": "devstral-small-2:24b",
+   "task": "hard-apply-patch",
+   "rep": 1,
+   "pass": false,
+   "tests_passed": 0,
+   "tests_failed": 7,
+   "seconds": 3.7,
+   "timed_out": false
+  },
+  {
+   "model": "devstral-small-2:24b",
+   "task": "hard-async-retry",
+   "rep": 1,
+   "pass": false,
+   "tests_passed": 0,
+   "tests_failed": 6,
+   "seconds": 3.9,
+   "timed_out": false
+  },
+  {
+   "model": "devstral-small-2:24b",
+   "task": "hard-cron",
+   "rep": 1,
+   "pass": false,
+   "tests_passed": 0,
+   "tests_failed": 15,
+   "seconds": 3.8,
+   "timed_out": false
+  },
+  {
+   "model": "devstral-small-2:24b",
+   "task": "hard-dependency-order",
+   "rep": 1,
+   "pass": false,
+   "tests_passed": 0,
+   "tests_failed": 6,
+   "seconds": 4.1,
+   "timed_out": false
+  },
+  {
+   "model": "devstral-small-2:24b",
+   "task": "hard-split-money",
+   "rep": 1,
+   "pass": false,
+   "tests_passed": 0,
+   "tests_failed": 8,
+   "seconds": 3.9,
+   "timed_out": false
+  },
+  {
+   "model": "devstral-small-2:24b",
+   "task": "inventory-rules",
+   "rep": 1,
+   "pass": false,
+   "tests_passed": 0,
+   "tests_failed": 5,
+   "seconds": 3.9,
+   "timed_out": false
+  },
+  {
+   "model": "devstral-small-2:24b",
+   "task": "iso-duration",
+   "rep": 1,
+   "pass": false,
+   "tests_passed": 0,
+   "tests_failed": 18,
+   "seconds": 3.5,
+   "timed_out": false
+  },
+  {
+   "model": "devstral-small-2:24b",
+   "task": "lru-cache",
+   "rep": 1,
+   "pass": false,
+   "tests_passed": 0,
+   "tests_failed": 4,
+   "seconds": 3.7,
+   "timed_out": false
+  },
+  {
+   "model": "devstral-small-2:24b",
+   "task": "rename-across-files",
+   "rep": 1,
+   "pass": false,
+   "tests_passed": 0,
+   "tests_failed": 1,
+   "seconds": 4.5,
+   "timed_out": false
+  },
+  {
+   "model": "devstral-small-2:24b",
+   "task": "speed-up-duplicates",
+   "rep": 1,
+   "pass": false,
+   "tests_passed": 0,
+   "tests_failed": 1,
+   "seconds": 4.7,
+   "timed_out": false
+  },
+  {
+   "model": "devstral-small-2:24b",
+   "task": "sql-injection",
+   "rep": 1,
+   "pass": false,
+   "tests_passed": 1,
+   "tests_failed": 3,
+   "seconds": 5.9,
+   "timed_out": false
+  }
+ ],
+ "load": {
+  "devstral-small-2:24b": {
+   "seconds": 8.2,
+   "on_gpu": 0.922
+  }
+ }
+}

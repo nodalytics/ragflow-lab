@@ -1,0 +1,1 @@
+inventory.py does not follow the rules in RULES.md. Fix the code so it does.

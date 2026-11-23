@@ -1,0 +1,431 @@
+{
+ "models": [
+  "qwen3.8-abliterated:27b",
+  "qwen3.8:27b"
+ ],
+ "reps": 2,
+ "tasks": [
+  "cli-json-flag",
+  "config-merge",
+  "fix-pagination",
+  "fix-timezone-bug",
+  "inventory-rules",
+  "iso-duration",
+  "lru-cache",
+  "rename-across-files",
+  "speed-up-duplicates",
+  "sql-injection"
+ ],
+ "runs": [
+  {
+   "model": "qwen3.8-abliterated:27b",
+   "task": "cli-json-flag",
+   "rep": 0,
+   "pass": true,
+   "tests_passed": 2,
+   "tests_failed": 0,
+   "seconds": 83.0,
+   "timed_out": false
+  },
+  {
+   "model": "qwen3.8-abliterated:27b",
+   "task": "config-merge",
+   "rep": 0,
+   "pass": true,
+   "tests_passed": 4,
+   "tests_failed": 0,
+   "seconds": 179.5,
+   "timed_out": false
+  },
+  {
+   "model": "qwen3.8-abliterated:27b",
+   "task": "fix-pagination",
+   "rep": 0,
+   "pass": true,
+   "tests_passed": 4,
+   "tests_failed": 0,
+   "seconds": 95.6,
+   "timed_out": false
+  },
+  {
+   "model": "qwen3.8-abliterated:27b",
+   "task": "fix-timezone-bug",
+   "rep": 0,
+   "pass": true,
+   "tests_passed": 2,
+   "tests_failed": 0,
+   "seconds": 100.5,
+   "timed_out": false
+  },
+  {
+   "model": "qwen3.8-abliterated:27b",
+   "task": "inventory-rules",
+   "rep": 0,
+   "pass": true,
+   "tests_passed": 5,
+   "tests_failed": 0,
+   "seconds": 110.5,
+   "timed_out": false
+  },
+  {
+   "model": "qwen3.8-abliterated:27b",
+   "task": "iso-duration",
+   "rep": 0,
+   "pass": true,
+   "tests_passed": 18,
+   "tests_failed": 0,
+   "seconds": 210.1,
+   "timed_out": false
+  },
+  {
+   "model": "qwen3.8-abliterated:27b",
+   "task": "lru-cache",
+   "rep": 0,
+   "pass": true,
+   "tests_passed": 4,
+   "tests_failed": 0,
+   "seconds": 111.2,
+   "timed_out": false
+  },
+  {
+   "model": "qwen3.8-abliterated:27b",
+   "task": "rename-across-files",
+   "rep": 0,
+   "pass": true,
+   "tests_passed": 4,
+   "tests_failed": 0,
+   "seconds": 116.3,
+   "timed_out": false
+  },
+  {
+   "model": "qwen3.8-abliterated:27b",
+   "task": "speed-up-duplicates",
+   "rep": 0,
+   "pass": true,
+   "tests_passed": 2,
+   "tests_failed": 0,
+   "seconds": 600.2,
+   "timed_out": true
+  },
+  {
+   "model": "qwen3.8-abliterated:27b",
+   "task": "sql-injection",
+   "rep": 0,
+   "pass": true,
+   "tests_passed": 4,
+   "tests_failed": 0,
+   "seconds": 85.9,
+   "timed_out": false
+  },
+  {
+   "model": "qwen3.8-abliterated:27b",
+   "task": "cli-json-flag",
+   "rep": 1,
+   "pass": true,
+   "tests_passed": 2,
+   "tests_failed": 0,
+   "seconds": 85.4,
+   "timed_out": false
+  },
+  {
+   "model": "qwen3.8-abliterated:27b",
+   "task": "config-merge",
+   "rep": 1,
+   "pass": true,
+   "tests_passed": 4,
+   "tests_failed": 0,
+   "seconds": 203.8,
+   "timed_out": false
+  },
+  {
+   "model": "qwen3.8-abliterated:27b",
+   "task": "fix-pagination",
+   "rep": 1,
+   "pass": true,
+   "tests_passed": 4,
+   "tests_failed": 0,
+   "seconds": 97.1,
+   "timed_out": false
+  },
+  {
+   "model": "qwen3.8-abliterated:27b",
+   "task": "fix-timezone-bug",
+   "rep": 1,
+   "pass": true,
+   "tests_passed": 2,
+   "tests_failed": 0,
+   "seconds": 107.2,
+   "timed_out": false
+  },
+  {
+   "model": "qwen3.8-abliterated:27b",
+   "task": "inventory-rules",
+   "rep": 1,
+   "pass": true,
+   "tests_passed": 5,
+   "tests_failed": 0,
+   "seconds": 96.0,
+   "timed_out": false
+  },
+  {
+   "model": "qwen3.8-abliterated:27b",
+   "task": "iso-duration",
+   "rep": 1,
+   "pass": true,
+   "tests_passed": 18,
+   "tests_failed": 0,
+   "seconds": 189.1,
+   "timed_out": false
+  },
+  {
+   "model": "qwen3.8-abliterated:27b",
+   "task": "lru-cache",
+   "rep": 1,
+   "pass": true,
+   "tests_passed": 4,
+   "tests_failed": 0,
+   "seconds": 83.8,
+   "timed_out": false
+  },
+  {
+   "model": "qwen3.8-abliterated:27b",
+   "task": "rename-across-files",
+   "rep": 1,
+   "pass": true,
+   "tests_passed": 4,
+   "tests_failed": 0,
+   "seconds": 114.9,
+   "timed_out": false
+  },
+  {
+   "model": "qwen3.8-abliterated:27b",
+   "task": "speed-up-duplicates",
+   "rep": 1,
+   "pass": true,
+   "tests_passed": 2,
+   "tests_failed": 0,
+   "seconds": 94.6,
+   "timed_out": false
+  },
+  {
+   "model": "qwen3.8-abliterated:27b",
+   "task": "sql-injection",
+   "rep": 1,
+   "pass": true,
+   "tests_passed": 4,
+   "tests_failed": 0,
+   "seconds": 90.0,
+   "timed_out": false
+  },
+  {
+   "model": "qwen3.8:27b",
+   "task": "cli-json-flag",
+   "rep": 0,
+   "pass": true,
+   "tests_passed": 2,
+   "tests_failed": 0,
+   "seconds": 84.3,
+   "timed_out": false
+  },
+  {
+   "model": "qwen3.8:27b",
+   "task": "config-merge",
+   "rep": 0,
+   "pass": true,
+   "tests_passed": 4,
+   "tests_failed": 0,
+   "seconds": 86.7,
+   "timed_out": false
+  },
+  {
+   "model": "qwen3.8:27b",
+   "task": "fix-pagination",
+   "rep": 0,
+   "pass": true,
+   "tests_passed": 4,
+   "tests_failed": 0,
+   "seconds": 91.0,
+   "timed_out": false
+  },
+  {
+   "model": "qwen3.8:27b",
+   "task": "fix-timezone-bug",
+   "rep": 0,
+   "pass": true,
+   "tests_passed": 2,
+   "tests_failed": 0,
+   "seconds": 66.7,
+   "timed_out": false
+  },
+  {
+   "model": "qwen3.8:27b",
+   "task": "inventory-rules",
+   "rep": 0,
+   "pass": true,
+   "tests_passed": 5,
+   "tests_failed": 0,
+   "seconds": 73.8,
+   "timed_out": false
+  },
+  {
+   "model": "qwen3.8:27b",
+   "task": "iso-duration",
+   "rep": 0,
+   "pass": true,
+   "tests_passed": 18,
+   "tests_failed": 0,
+   "seconds": 84.2,
+   "timed_out": false
+  },
+  {
+   "model": "qwen3.8:27b",
+   "task": "lru-cache",
+   "rep": 0,
+   "pass": true,
+   "tests_passed": 4,
+   "tests_failed": 0,
+   "seconds": 143.9,
+   "timed_out": false
+  },
+  {
+   "model": "qwen3.8:27b",
+   "task": "rename-across-files",
+   "rep": 0,
+   "pass": true,
+   "tests_passed": 4,
+   "tests_failed": 0,
+   "seconds": 74.5,
+   "timed_out": false
+  },
+  {
+   "model": "qwen3.8:27b",
+   "task": "speed-up-duplicates",
+   "rep": 0,
+   "pass": true,
+   "tests_passed": 2,
+   "tests_failed": 0,
+   "seconds": 82.9,
+   "timed_out": false
+  },
+  {
+   "model": "qwen3.8:27b",
+   "task": "sql-injection",
+   "rep": 0,
+   "pass": true,
+   "tests_passed": 4,
+   "tests_failed": 0,
+   "seconds": 68.5,
+   "timed_out": false
+  },
+  {
+   "model": "qwen3.8:27b",
+   "task": "cli-json-flag",
+   "rep": 1,
+   "pass": true,
+   "tests_passed": 2,
+   "tests_failed": 0,
+   "seconds": 65.5,
+   "timed_out": false
+  },
+  {
+   "model": "qwen3.8:27b",
+   "task": "config-merge",
+   "rep": 1,
+   "pass": true,
+   "tests_passed": 4,
+   "tests_failed": 0,
+   "seconds": 83.8,
+   "timed_out": false
+  },
+  {
+   "model": "qwen3.8:27b",
+   "task": "fix-pagination",
+   "rep": 1,
+   "pass": true,
+   "tests_passed": 4,
+   "tests_failed": 0,
+   "seconds": 76.7,
+   "timed_out": false
+  },
+  {
+   "model": "qwen3.8:27b",
+   "task": "fix-timezone-bug",
+   "rep": 1,
+   "pass": true,
+   "tests_passed": 2,
+   "tests_failed": 0,
+   "seconds": 84.3,
+   "timed_out": false
+  },
+  {
+   "model": "qwen3.8:27b",
+   "task": "inventory-rules",
+   "rep": 1,
+   "pass": true,
+   "tests_passed": 5,
+   "tests_failed": 0,
+   "seconds": 70.1,
+   "timed_out": false
+  },
+  {
+   "model": "qwen3.8:27b",
+   "task": "iso-duration",
+   "rep": 1,
+   "pass": true,
+   "tests_passed": 18,
+   "tests_failed": 0,
+   "seconds": 166.0,
+   "timed_out": false
+  },
+  {
+   "model": "qwen3.8:27b",
+   "task": "lru-cache",
+   "rep": 1,
+   "pass": true,
+   "tests_passed": 4,
+   "tests_failed": 0,
+   "seconds": 81.5,
+   "timed_out": false
+  },
+  {
+   "model": "qwen3.8:27b",
+   "task": "rename-across-files",
+   "rep": 1,
+   "pass": true,
+   "tests_passed": 4,
+   "tests_failed": 0,
+   "seconds": 92.4,
+   "timed_out": false
+  },
+  {
+   "model": "qwen3.8:27b",
+   "task": "speed-up-duplicates",
+   "rep": 1,
+   "pass": true,
+   "tests_passed": 2,
+   "tests_failed": 0,
+   "seconds": 235.4,
+   "timed_out": false
+  },
+  {
+   "model": "qwen3.8:27b",
+   "task": "sql-injection",
+   "rep": 1,
+   "pass": true,
+   "tests_passed": 4,
+   "tests_failed": 0,
+   "seconds": 79.4,
+   "timed_out": false
+  }
+ ],
+ "load": {
+  "qwen3.8-abliterated:27b": {
+   "seconds": 1.1,
+   "on_gpu": 1.0
+  },
+  "qwen3.8:27b": {
+   "seconds": 5.9,
+   "on_gpu": 1.0
+  }
+ }
+}

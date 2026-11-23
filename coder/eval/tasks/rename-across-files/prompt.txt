@@ -1,0 +1,1 @@
+Rename calc_total to compute_total everywhere in this project. Keep calc_total working as a deprecated alias that emits a DeprecationWarning and returns the same result.
