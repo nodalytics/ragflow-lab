@@ -17,6 +17,11 @@ FORCE=0
 [ "${1:-}" = --force ] && FORCE=1
 log() { echo "$(date -u '+%F %T') $*" | tee -a "$LOG"; }
 
+# Run from a copy: the checkout is updated below, and bash reads a script while it runs it. After an update that
+# changes this file, the new version takes over (--force, so it deploys).
+RUN=$L/cd.run.sh
+if [ "${0##*/}" != cd.run.sh ]; then cp "$0" "$RUN" && exec bash "$RUN" "$@"; fi
+
 exec 9>"$L/cd.lock"
 flock -n 9 || { echo "another deploy is running"; exit 0; }
 
@@ -36,6 +41,11 @@ fi
 
 log "deploying $commit with RAGFlow $release (was: ${last:-never}, installed $installed)"
 git reset -q --hard origin/main
+if ! cmp -s "$C/deploy/cd.sh" "$RUN"; then
+  log "deploy/cd.sh changed: running the new version"
+  exec 9>&-
+  exec bash "$C/deploy/cd.sh" --force
+fi
 ok=1
 for f in "$C"/*.sh "$C"/deploy/*.sh "$C"/coder/*.sh; do bash -n "$f" 2>>"$LOG" || { log "syntax error in $f"; ok=0; }; done
 if [ "$ok" = 1 ] && command -v shellcheck >/dev/null; then
