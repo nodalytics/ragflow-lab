@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Continuous deployment on the lab, run every 5 minutes by ragflow-cd.timer (deploy/install.sh), or by hand:
 #   bash ~/ragflow-lab/deploy/cd.sh [--force]
-# It deploys when either changes: this repo's main branch (fetched with the read-only deploy key) or RAGFlow's latest
+# It deploys when either changes: this repo's main branch (public, fetched over https) or RAGFlow's latest
 # release. Each deploy: update the checkout, lint the scripts, then ragflow.sh up --wait (which validates the settings
 # and ports before starting anything, and waits until RAGFlow is healthy). A failed deploy is not retried until the
 # commit or the release changes again (or --force). The log is ~/ragflow/lab/cd.log; the state ~/ragflow/lab/cd.state.

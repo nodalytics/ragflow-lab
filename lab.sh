@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # RAGFlow on the lab, from your machine. Reads LAB and LAB_KEY from .secrets/lab.env (ignored by git).
-#   ./lab.sh setup    once: a read-only deploy key and a checkout of this repo on the lab (~/ragflow-lab), for CD
+#   ./lab.sh setup    once: a checkout of this repo on the lab (~/ragflow-lab), for CD
 #   ./lab.sh status   version, containers, health, and the last start-up and CD lines
 #   ./lab.sh up       install or upgrade to the latest release and start it, in the background (CD does this itself)
 #   ./lab.sh down     stop the stack, keep its data
@@ -25,22 +25,14 @@ tunnel)
   echo "RAGFlow on http://127.0.0.1:$WEB (ctrl-c to stop)"
   exec ssh -N "${ssh_opts[@]}" -L "$WEB:127.0.0.1:$WEB" "$LAB" ;;
 setup)
-  # a key only for this repo, read-only, made on the lab; its public half is registered with GitHub
-  pub=$(lab 'k=~/.ssh/ragflow_lab_deploy; [ -f $k ] || ssh-keygen -q -t ed25519 -N "" -C ragflow-lab-cd -f $k; cat $k.pub')
-  if ! gh repo deploy-key list -R "$REPO" | grep -q ragflow-lab-cd; then
-    printf '%s\n' "$pub" >"${TMPDIR:-/tmp}/ragflow_lab_deploy.pub"
-    gh repo deploy-key add "${TMPDIR:-/tmp}/ragflow_lab_deploy.pub" -R "$REPO" -t "lab CD (read-only)"
-    rm -f "${TMPDIR:-/tmp}/ragflow_lab_deploy.pub"
-  fi
+  # the repo is public: the lab pulls it over https, with no key or token
   lab "REPO=$REPO bash -s" <<'REMOTE'
 set -euo pipefail
-export GIT_SSH_COMMAND="ssh -i $HOME/.ssh/ragflow_lab_deploy -o IdentitiesOnly=yes -o StrictHostKeyChecking=accept-new"
 C=$HOME/ragflow-lab
 if [ ! -d "$C/.git" ]; then
   [ -d "$C" ] && mv "$C" "$C.before-cd-$(date +%Y%m%d%H%M%S)"  # the files earlier versions copied there
-  git clone -q "git@github.com:$REPO.git" "$C"
+  git clone -q "https://github.com/$REPO.git" "$C"
 fi
-git -C "$C" config core.sshCommand "$GIT_SSH_COMMAND"
 git -C "$C" fetch -q origin main && git -C "$C" reset -q --hard origin/main
 echo "checkout ~/ragflow-lab at $(git -C "$C" log --oneline -1)"
 echo "now, once, on the lab: sudo sh ~/ragflow-lab/deploy/install.sh   (the CD timer and the nginx site)"

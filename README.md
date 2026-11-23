@@ -41,7 +41,7 @@ A push to `main` deploys itself, and so does a new RAGFlow release.
     them, without starting anything.
 - **CD** runs on the lab, which pulls; nothing on GitHub can reach the lab, and no lab address or key is stored
   there. Every 5 minutes `deploy/cd.sh`:
-  1. fetches `main` with a read-only deploy key that only works for this repo;
+  1. fetches `main` (the repo is public, so no key or token is needed);
   2. reads RAGFlow's latest release;
   3. if either changed, updates the checkout `~/ragflow-lab`, lints the scripts, and runs `ragflow.sh up --wait`.
      That validates the settings and ports before starting anything, then waits up to 10 minutes for the health
@@ -54,8 +54,7 @@ A push to `main` deploys itself, and so does a new RAGFlow release.
   `journalctl -u ragflow-cd` on the lab.
 
 **Set it up once:**
-1. `./lab.sh setup` from your machine. It makes the deploy key on the lab, registers it with this repo as read-only,
-   and clones the repo to `~/ragflow-lab`.
+1. `./lab.sh setup` from your machine. It clones the repo to `~/ragflow-lab` on the lab.
 2. `sudo sh ~/ragflow-lab/deploy/install.sh` on the lab. It installs the timer, which runs as you, not root, and the
    nginx site. In Cloudflare, `ragflow.stbfarm.org` is a proxied DNS record pointing at the lab, as for
    kestrel.stbfarm.org.
