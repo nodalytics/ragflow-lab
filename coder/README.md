@@ -44,8 +44,30 @@ From the repo root, on your machine:
 
 ## Connect opencode
 
-In `~/.config/opencode/opencode.json`, with the key in your environment (`export LAB_CODER_KEY=sk-lab-...` in your
-shell profile), never in a committed file:
+### 1. Get a key
+
+From this repo, on a machine with lab access (one key per person):
+
+```sh
+./lab.sh coder key add <name>     # prints the key once: pass it on privately
+```
+
+Then, on the lab, let nginx accept it: `sudo sh ~/ragflow-lab/deploy/install.sh`.
+
+### 2. Save the key on your computer
+
+Readable only by you, and never in a repo:
+
+```sh
+mkdir -p ~/.config/opencode
+printf '%s\n' 'sk-lab-...' > ~/.config/opencode/lab-coder.key
+chmod 600 ~/.config/opencode/lab-coder.key
+```
+
+### 3. Add the lab to opencode
+
+Merge this into `~/.config/opencode/opencode.json`, keeping any providers already there. opencode reads the key from
+the file (`{file:...}`).
 
 ```json
 {
@@ -56,7 +78,7 @@ shell profile), never in a committed file:
       "name": "Lab",
       "options": {
         "baseURL": "https://coder.stbfarm.org/v1",
-        "apiKey": "{env:LAB_CODER_KEY}"
+        "apiKey": "{file:~/.config/opencode/lab-coder.key}"
       },
       "models": {
         "qwen3.8:27b": {
@@ -73,15 +95,37 @@ shell profile), never in a committed file:
         }
       }
     }
-  },
-  "model": "lab/qwen3.8:27b"
+  }
 }
 ```
 
-Then run `opencode` in a project; `/models` switches between the two and any other provider you have.
+To make the lab model the default, add `"model": "lab/qwen3.8:27b"` at the top level. If you would rather keep the
+key in an environment variable, use `"apiKey": "{env:LAB_CODER_KEY}"` and `export LAB_CODER_KEY=sk-lab-...` in your
+shell profile.
 
-Or keep the key in a file instead of the environment: save it to `~/.config/opencode/lab-coder.key` (mode 600) and
-set `"apiKey": "{file:~/.config/opencode/lab-coder.key}"`. `opencode models lab` should list both models.
+### 4. Check and use it
+
+```sh
+opencode models lab        # lists lab/qwen3.8:27b and lab/qwen3.8-abliterated:27b
+cd ~/some/project
+opencode                   # then /models, and pick lab/qwen3.8:27b
+opencode run -m lab/qwen3.8:27b "explain what this repo does"     # one-off, without the interface
+```
+
+Switch to `lab/qwen3.8-abliterated:27b` (`/models`) only when the stock model refuses something you need.
+
+Tested on 2026-11-23: through opencode, the lab model read a file with a bug, fixed it with a tool call, and
+explained the fix.
+
+### Good to know
+
+- **One request at a time:** if two people use the model at once, the second waits until the first finishes.
+- **Swapping models:** only one fits on the GPU, so the first request after switching models takes a few seconds.
+- **Errors:**
+  - `401`: the key is missing or wrong, or the sudo install was not run after the key was made.
+  - `404`: the URL is not under `/v1/`.
+  - Nothing at all: check `./lab.sh coder status`.
+- **Removing someone:** `./lab.sh coder key rm <name>`, then the sudo install on the lab.
 
 ## Other tools
 
