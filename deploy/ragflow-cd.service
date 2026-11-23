@@ -1,0 +1,15 @@
+# RAGFlow continuous deployment on the lab (deploy/cd.sh). Installed by deploy/install.sh, which fills in the user.
+[Unit]
+Description=RAGFlow CD: deploy nodalytics/ragflow-lab main and RAGFlow's latest release
+After=network-online.target docker.service
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=__USER__
+Group=__USER__
+Environment=HOME=__HOME__
+ExecStart=/bin/bash __HOME__/ragflow-lab/deploy/cd.sh
+# a first install pulls several GB and waits up to 10 minutes for health
+TimeoutStartSec=45min
+Nice=5

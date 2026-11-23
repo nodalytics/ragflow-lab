@@ -1,0 +1,11 @@
+# Runs ragflow-cd.service every 5 minutes. Installed by deploy/install.sh.
+[Unit]
+Description=RAGFlow CD every 5 minutes
+
+[Timer]
+OnBootSec=3min
+OnUnitInactiveSec=5min
+Persistent=true
+
+[Install]
+WantedBy=timers.target

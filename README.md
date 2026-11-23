@@ -7,9 +7,12 @@ assessment (v0.21.1, 2026-05-14): what it is, what it costs to run, and what to 
 
 | File | What it does |
 |---|---|
-| `lab.sh` | Installs, upgrades, starts, stops or removes RAGFlow on the lab, from your machine |
-| `install-nginx.sh` | Run once on the lab with sudo: publishes the site through the lab's nginx |
+| `ragflow.sh` | Runs on the lab: installs or upgrades the release, starts, stops, checks (`up`, `status`, `down`, `purge`, `check`) |
+| `lab.sh` | Runs on your machine: sends `ragflow.sh` to the lab over ssh, and `setup`, `deploy`, `tunnel` |
+| `deploy/cd.sh` | Continuous deployment, run on the lab every 5 minutes by `deploy/ragflow-cd.timer` |
+| `deploy/install.sh` | Once on the lab with sudo: the CD timer and the nginx site (`deploy/install-nginx.sh`) |
 | `nginx/ragflow.stbfarm.org.conf` | The nginx site: HTTPS with the lab's origin certificate; only Cloudflare can connect |
+| `.github/workflows/ci.yml` | CI: shellcheck, `nginx -t`, and a dry run against RAGFlow's latest release |
 | `integration.md` | The assessment |
 
 ## Run it
@@ -18,15 +21,44 @@ From your machine, in this repo. It reads `LAB` (user@host) and `LAB_KEY` (the k
 folder) from `.secrets/lab.env`, which git ignores: copy it from poker-analysis's `.secrets/lab.env`.
 
 ```sh
-./lab.sh up       # the latest release; installs, or upgrades what is there, in the background
-./lab.sh status   # version, containers, health
+./lab.sh status   # version, containers, health, the last start-up and CD lines
+./lab.sh deploy   # run the CD step now instead of waiting for the timer
+./lab.sh up       # by hand: the latest release, installed or upgraded, in the background
 ./lab.sh tunnel   # http://127.0.0.1:8088 on your machine, without the public site
 ./lab.sh down     # stop, keep the data
 ./lab.sh purge    # delete the data, the images and ~/ragflow (asks first)
 ```
 
-Then, once, on the lab: `sudo sh ~/ragflow-lab/install-nginx.sh`. In Cloudflare: a proxied DNS record for
-`ragflow.stbfarm.org` pointing at the lab, as for kestrel.stbfarm.org.
+## CI/CD
+
+A push to `main` deploys itself, and so does a new RAGFlow release.
+
+- **CI**, on GitHub Actions, runs on every push and pull request, and every Monday. It catches a RAGFlow release that
+  breaks our settings before the lab tries it. It runs:
+  - shellcheck on every script;
+  - `nginx -t` on the site, with a throwaway certificate;
+  - `ragflow.sh check`: fetches RAGFlow's latest release, applies our settings and port override, and validates
+    them, without starting anything.
+- **CD** runs on the lab, which pulls; nothing on GitHub can reach the lab, and no lab address or key is stored
+  there. Every 5 minutes `deploy/cd.sh`:
+  1. fetches `main` with a read-only deploy key that only works for this repo;
+  2. reads RAGFlow's latest release;
+  3. if either changed, updates the checkout `~/ragflow-lab`, lints the scripts, and runs `ragflow.sh up --wait`.
+     That validates the settings and ports before starting anything, then waits up to 10 minutes for the health
+     check.
+- **A failed deploy** is logged and not retried until the commit or the release changes; `./lab.sh deploy` forces
+  one. The running stack is left as it was if validation fails.
+- **nginx** needs root, so CD does not change it: when `nginx/ragflow.stbfarm.org.conf` differs from the installed
+  site, the log says to re-run `sudo sh ~/ragflow-lab/deploy/install.sh`.
+- **Logs:** `~/ragflow/lab/cd.log`, the last lines of which `./lab.sh status` shows, and
+  `journalctl -u ragflow-cd` on the lab.
+
+**Set it up once:**
+1. `./lab.sh setup` from your machine. It makes the deploy key on the lab, registers it with this repo as read-only,
+   and clones the repo to `~/ragflow-lab`.
+2. `sudo sh ~/ragflow-lab/deploy/install.sh` on the lab. It installs the timer, which runs as you, not root, and the
+   nginx site. In Cloudflare, `ragflow.stbfarm.org` is a proxied DNS record pointing at the lab, as for
+   kestrel.stbfarm.org.
 
 **Settings.**
 - `RAGFLOW_VERSION=v1.0.0` pins a release. The default is the latest, looked up on GitHub each time `up` runs.
@@ -37,7 +69,7 @@ Then, once, on the lab: `sudo sh ~/ragflow-lab/install-nginx.sh`. In Cloudflare:
 ## How it is set up
 
 - **Where:** the release's own compose files, in `~/ragflow` on the lab, as the docker compose project `ragflow`.
-  `lab.sh` changes only `docker/.env` and adds one override file, `docker/lab-override.yml`.
+  `ragflow.sh` changes only `docker/.env` and adds one override file, `docker/lab-override.yml`.
 - **Ports:** one is published, the web UI on the lab's `127.0.0.1:8088`. RAGFlow's own nginx inside the container
   sends `/api/v1` to its API, so the API is at `https://ragflow.stbfarm.org/api/v1` with an API key made in the UI.
   MySQL, Elasticsearch, MinIO, Redis and the rest stay on the stack's own network. The override is built from the
