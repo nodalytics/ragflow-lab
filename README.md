@@ -1,20 +1,26 @@
 # RAGFlow and coding models on the lab
 
-[RAGFlow](https://github.com/infiniflow/ragflow) is a self-hosted retrieval engine. It reads documents (PDF, Word,
-tables, scans), splits them by their layout, indexes them, and answers questions about them with a citation for
-every answer. It runs on the lab at **https://ragflow.stbfarm.org**. [integration.md](integration.md) is the earlier
-assessment (v0.21.1, 2026-05-14): what it is, what it costs to run, and what to use it for.
+Two self-hosted AI services on the lab, each installed, upgraded and deployed from this repo, with CI on GitHub and
+continuous deployment on the lab itself:
+
+| Service | Address | What it is |
+|---|---|---|
+| **RAGFlow** | https://ragflow.stbfarm.org | [RAGFlow](https://github.com/infiniflow/ragflow), a retrieval engine: it reads documents (PDF, Word, tables, scans), indexes them by their layout, and answers questions about them with a citation for every answer. Web UI, HTTP API, an OpenAI-compatible chat API and an MCP endpoint. |
+| **Coding models** | https://coder.stbfarm.org/v1 | Qwen3.8 27B, and an uncensored version of it, on the lab's RTX 4090, behind per-person API keys. For opencode, VS Code agents, Claude Code and any OpenAI client: [coder/README.md](coder/README.md). |
+
+[integration.md](integration.md) is the assessment of RAGFlow: what it is, what it costs to run, and when it is
+worth it.
 
 | File | What it does |
 |---|---|
-| `ragflow.sh` | Runs on the lab: installs or upgrades the release, starts, stops, checks (`up`, `status`, `down`, `purge`, `check`) |
-| `lab.sh` | Runs on your machine: sends `ragflow.sh` to the lab over ssh, and `setup`, `deploy`, `tunnel` |
+| `lab.sh` | Runs on your machine: every command below, sent to the lab over ssh |
+| `ragflow.sh` | Runs on the lab: installs or upgrades RAGFlow, starts, stops, checks |
+| `coder/coder.sh` | Runs on the lab: the coding models (Ollama on the 4090) and their API keys |
 | `deploy/cd.sh` | Continuous deployment, run on the lab every 5 minutes by `deploy/ragflow-cd.timer` |
-| `deploy/install.sh` | Once on the lab with sudo: the CD timer and the nginx site (`deploy/install-nginx.sh`) |
-| `nginx/ragflow.stbfarm.org.conf` | The nginx site: HTTPS with the lab's origin certificate; only Cloudflare can connect |
-| `.github/workflows/ci.yml` | CI: shellcheck, `nginx -t`, and a dry run against RAGFlow's latest release |
-| `coder/` | **Coding models** on the lab's 4090 for opencode and other agents, at https://coder.stbfarm.org: Qwen3.8 27B and an uncensored (abliterated) version; see [coder/README.md](coder/README.md) |
-| `integration.md` | The assessment |
+| `deploy/install.sh` | Once on the lab with sudo: the CD timer and both nginx sites (`deploy/install-nginx.sh`) |
+| `nginx/`, `coder/nginx/` | The two nginx sites: HTTPS with the lab's origin certificate; only Cloudflare can connect |
+| `.github/workflows/ci.yml` | CI: shellcheck, `nginx -t` on both sites, and dry runs of both setups |
+| `integration.md` | The RAGFlow assessment, and lessons from a first trial |
 
 ## Run it
 
@@ -22,52 +28,83 @@ From your machine, in this repo. It reads `LAB` (user@host) and `LAB_KEY` (the k
 folder) from `.secrets/lab.env`, which git ignores: copy it from poker-analysis's `.secrets/lab.env`.
 
 ```sh
-./lab.sh status   # version, containers, health, the last start-up and CD lines
-./lab.sh deploy   # run the CD step now instead of waiting for the timer
-./lab.sh up       # by hand: the latest release, installed or upgraded, in the background
-./lab.sh tunnel   # http://127.0.0.1:8088 on your machine, without the public site
-./lab.sh down     # stop, keep the data
-./lab.sh purge    # delete the data, the images and ~/ragflow (asks first)
+./lab.sh status          # RAGFlow: version, containers, health, the last start-up and CD lines
+./lab.sh coder status    # coding models: GPU, loaded model, API health, who has a key
+./lab.sh deploy          # run the CD step now instead of waiting for the timer
+./lab.sh coder key add NAME   # an API key for the coding models (then the sudo install below)
+./lab.sh tunnel          # both services on your machine, without the public sites:
+                         #   http://127.0.0.1:8088 (RAGFlow) and http://127.0.0.1:11435/v1 (coding models)
+./lab.sh up | down | purge          # RAGFlow by hand (purge asks first)
+./lab.sh coder up | down | purge    # the coding models by hand
 ```
 
 ## CI/CD
 
-A push to `main` deploys itself, and so does a new RAGFlow release. Each deploy runs RAGFlow first and then the
-coding models (`coder/coder.sh up --wait`, which waits until the model is loaded fully on the GPU).
+A push to `main` deploys itself, and so does a new RAGFlow release. Each deploy brings up RAGFlow first, then the
+coding models.
 
 - **CI**, on GitHub Actions, runs on every push and pull request, and every Monday. It catches a RAGFlow release that
   breaks our settings before the lab tries it. It runs:
   - shellcheck on every script;
-  - `nginx -t` on the site, with a throwaway certificate;
+  - `nginx -t` on both sites, with a throwaway certificate and full-length test keys;
   - `ragflow.sh check`: fetches RAGFlow's latest release, applies our settings and port override, and validates
-    them, without starting anything.
+    them, without starting anything;
+  - `coder/coder.sh check`.
 - **CD** runs on the lab, which pulls; nothing on GitHub can reach the lab, and no lab address or key is stored
   there. Every 5 minutes `deploy/cd.sh`:
   1. fetches `main` (the repo is public, so no key or token is needed);
   2. reads RAGFlow's latest release;
-  3. if either changed, updates the checkout `~/ragflow-lab`, lints the scripts, and runs `ragflow.sh up --wait`.
-     That validates the settings and ports before starting anything, then waits up to 10 minutes for the health
-     check.
+  3. if either changed, or the coding models are not running, updates the checkout `~/ragflow-lab` and lints the
+     scripts;
+  4. runs `ragflow.sh up --wait`, which validates settings and ports before starting anything and waits for the
+     health check;
+  5. runs `coder/coder.sh up --wait`, which waits until the default model is loaded fully on the GPU.
+- **Updates to `cd.sh` itself:** CD runs from a copy of itself. When an update changes `deploy/cd.sh`, the new
+  version takes over and deploys.
 - **A failed deploy** is logged and not retried until the commit or the release changes; `./lab.sh deploy` forces
-  one. The running stack is left as it was if validation fails.
-- **nginx** needs root, so CD does not change it: when `nginx/ragflow.stbfarm.org.conf` differs from the installed
-  site, the log says to re-run `sudo sh ~/ragflow-lab/deploy/install.sh`.
-- **Logs:** `~/ragflow/lab/cd.log`, the last lines of which `./lab.sh status` shows, and
-  `journalctl -u ragflow-cd` on the lab.
+  one. Validation happens before anything starts, so a bad setting leaves the running services as they were.
+- **nginx** needs root, so CD does not change it. The log says to re-run `sudo sh ~/ragflow-lab/deploy/install.sh`
+  when:
+  - a site's config in the repo differs from the installed one;
+  - a site is not published yet;
+  - the coder API keys are newer than nginx's copy.
+
+  If `nginx -t` fails during the install, every site is put back as it was.
+- **Logs:** `~/ragflow/lab/cd.log` (its last lines are in `./lab.sh status`), and `journalctl -u ragflow-cd` on the
+  lab.
 
 **Set it up once:**
 1. `./lab.sh setup` from your machine. It clones the repo to `~/ragflow-lab` on the lab.
 2. `sudo sh ~/ragflow-lab/deploy/install.sh` on the lab. It installs the timer, which runs as you, not root, and the
-   nginx site. In Cloudflare, `ragflow.stbfarm.org` is a proxied DNS record pointing at the lab, as for
-   kestrel.stbfarm.org.
+   nginx sites. In Cloudflare, `ragflow.stbfarm.org` and `coder.stbfarm.org` are proxied DNS records pointing at the
+   lab, as for kestrel.stbfarm.org.
 
-**Settings.**
+**RAGFlow settings.**
 - `RAGFLOW_VERSION=v1.0.0` pins a release. The default is the latest, looked up on GitHub each time `up` runs.
   `up` again with a newer release upgrades in place, and the data is kept.
 - `RAGFLOW_WEB_PORT` changes the lab port (default 8088).
 - `RAGFLOW_EMBED_MODEL` picks the embedding model.
 
-## How it is set up
+The coding models' settings are at the top of `coder/coder.sh`.
+
+## Security: this repo is public
+
+- **Never in the repo:** the lab's address, login and key (`.secrets/`, ignored by git), passwords, and API keys.
+- **On the lab only:**
+  - RAGFlow's passwords, in `~/ragflow/lab-passwords.env` (mode 600);
+  - the coder API keys, in `~/coder/api-keys` (mode 600), and nginx's root-only copy in
+    `/etc/nginx/coder-keys.map`.
+- **Nothing reaches the lab from GitHub:** the lab pulls this repo, and both public sites refuse any connection that
+  does not come through Cloudflare.
+- **Only one port of each service is reachable,** through nginx: RAGFlow's web UI, and the coder `/v1/` APIs with a
+  key. Every database, queue and admin port stays on the lab's 127.0.0.1 or the services' own networks.
+- **Before a push, check the diff.** The full history was scanned with TruffleHog and a pattern search on
+  2026-11-23 and is clean. The history was rewritten that day to remove a note about another project, so clones from
+  before then are out of date.
+
+## RAGFlow
+
+### How it is set up
 
 - **Where:** the release's own compose files, in `~/ragflow` on the lab, as the docker compose project `ragflow`.
   `ragflow.sh` changes only `docker/.env` and adds one override file, `docker/lab-override.yml`.
@@ -94,7 +131,8 @@ coding models (`coder/coder.sh up --wait`, which waits until the model is loaded
   - Pick the provider type that matches the server: "Ollama" for Ollama, "OpenAI-API-Compatible" for an
     OpenAI-style server (the lesson in integration.md).
 - **Resources:** about 8 GB of images. The lab disk was 97% full on 2026-11-22 (33 GB free), and 99% after the
-  install (17 GB free); `up` refuses a first install below 15 GB. Memory, at rest, is a few GB for the stack, plus the embedding model.
+  install (17 GB free); `up` refuses a first install below 15 GB. At rest it uses a few GB of memory, plus the
+  embedding model. See coder/README.md for what was cleared on 2026-11-23.
 - **Admin console, Services:** in v1.0.0 the three RAGFlow processes (`ragflow-server-…`, `ingestor-…`,
   `syncer-…`) show **Timeout** about half the time. This is not a fault. Each process sends a heartbeat only
   every 11th tick, about every 33 s (`SendHeartbeat` in `internal/service/admin_client.go` skips 10 ticks after
@@ -108,7 +146,7 @@ coding models (`coder/coder.sh up --wait`, which waits until the model is loaded
   - Uploads up to 512 MB, although Cloudflare's free plan stops at 100 MB.
   - Put Cloudflare Access in front if only the team should see the login page.
 
-## Use it as a model (OpenAI-compatible API)
+### Use it as a model (OpenAI-compatible API)
 
 A RAGFlow **chat assistant** (a model, plus the datasets it searches and its prompt) answers in OpenAI's chat format.
 Any tool that takes a custom OpenAI-compatible provider can therefore talk to it as if it were a model: every answer
@@ -178,7 +216,7 @@ curl -s https://ragflow.stbfarm.org/api/v1/openai/<chat_id>/chat/completions \
   -d '{"model":"model","stream":false,"messages":[{"role":"user","content":"Summarise what the documents say about ICM."}]}'
 ```
 
-## Use it as a tool inside coding agents (MCP)
+### Use it as a tool inside coding agents (MCP)
 
 RAGFlow serves an MCP endpoint at **`https://ragflow.stbfarm.org/api/v1/mcp`**. It uses streamable HTTP, and each
 client signs in with its own RAGFlow API key (made at https://ragflow.stbfarm.org/user-setting/api). Its tools:
