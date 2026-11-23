@@ -21,5 +21,6 @@ sed -e "s|__USER__|$U|g" -e "s|__HOME__|$H|g" ragflow-cd.service > /etc/systemd/
 install -m 644 ragflow-cd.timer /etc/systemd/system/ragflow-cd.timer
 systemctl daemon-reload
 systemctl enable --now ragflow-cd.timer
-echo "CD timer: $(systemctl is-active ragflow-cd.timer); next run: $(systemctl show ragflow-cd.timer -p NextElapseUSecRealtime --value)"
+echo "CD timer: $(systemctl is-active ragflow-cd.timer)"
+systemctl list-timers ragflow-cd.timer --no-pager | head -2
 sh ./install-nginx.sh
