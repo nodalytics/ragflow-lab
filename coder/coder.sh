@@ -10,8 +10,8 @@
 #   coder.sh check            validate the settings without starting anything
 # Environment:
 #   CODER_MODELS   space-separated Ollama models, the first loaded and kept loaded; NAME=SOURCE downloads SOURCE (e.g.
-#                  a hf.co/... GGUF) and serves it as NAME (default: qwen3.8:27b, and qwen3.8-abliterated:27b from
-#                  huihui-ai's abliterated GGUF). One model fits on the GPU at a time: asking for another swaps it in.
+#                  a hf.co/... GGUF) and serves it as NAME (default: qwen3.8-abliterated:27b, from huihui-ai's
+#                  abliterated GGUF, kept loaded; and the stock qwen3.8:27b). One model fits on the GPU at a time: asking for another swaps it in.
 #   CODER_GPU      which GPU, by a word of its name (default 4090)
 #   CODER_CONTEXT  context length in tokens (default 98304: 22 of the 4090's 24 GB with qwen3.8:27b; 131072 spills)
 #   CODER_PORT     the lab port, on 127.0.0.1 (default 11435)
@@ -21,7 +21,7 @@ set -euo pipefail
 
 CMD=${1:-status}
 C=${CODER_DIR:-$HOME/coder}
-MODELS=${CODER_MODELS:-qwen3.8:27b qwen3.8-abliterated:27b=hf.co/huihui-ai/Huihui-Qwen3.8-27B-abliterated-GGUF:Q4_K_M}
+MODELS=${CODER_MODELS:-qwen3.8-abliterated:27b=hf.co/huihui-ai/Huihui-Qwen3.8-27B-abliterated-GGUF:Q4_K_M qwen3.8:27b}
 GPU=${CODER_GPU:-4090}
 CTX=${CODER_CONTEXT:-98304}
 PORT=${CODER_PORT:-11435}

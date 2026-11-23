@@ -7,8 +7,8 @@ deployed and checked the same way as RAGFlow, by the same CI/CD ([../README.md](
 
 | Model name | What it is | Context | Speed on the 4090 |
 |---|---|---|---|
-| `qwen3.8:27b` (default, always loaded) | Qwen3.8 27B, Qwen's August 2026 model, 4-bit (17.7 GB), from Ollama's library | 98,304 | 67 tok/s, 109 with thinking |
-| `qwen3.8-abliterated:27b` | The same model with its refusals removed (huihui-ai's abliterated GGUF, 4-bit, 16.6 GB) | 98,304 | 46 tok/s, 50 with thinking |
+| `qwen3.8-abliterated:27b` (**default**, always loaded) | Qwen3.8 27B with its refusals removed (huihui-ai's abliterated GGUF, 4-bit, 16.6 GB) | 98,304 | 46 tok/s, 50 with thinking |
+| `qwen3.8:27b` | Qwen3.8 27B as Qwen released it, August 2026, 4-bit (17.7 GB), from Ollama's library | 98,304 | 67 tok/s, 109 with thinking |
 
 Both call tools, think (levels `low`, `medium` and `xhigh`; `medium` by default), and read images.
 
@@ -99,7 +99,8 @@ the file (`{file:...}`).
 }
 ```
 
-To make the lab model the default, add `"model": "lab/qwen3.8:27b"` at the top level. If you would rather keep the
+To make the lab model opencode's default, add `"model": "lab/qwen3.8-abliterated:27b"` at the top level: the
+model the lab keeps loaded, so no swap is needed. If you would rather keep the
 key in an environment variable, use `"apiKey": "{env:LAB_CODER_KEY}"` and `export LAB_CODER_KEY=sk-lab-...` in your
 shell profile.
 
@@ -108,11 +109,12 @@ shell profile.
 ```sh
 opencode models lab        # lists lab/qwen3.8:27b and lab/qwen3.8-abliterated:27b
 cd ~/some/project
-opencode                   # then /models, and pick lab/qwen3.8:27b
-opencode run -m lab/qwen3.8:27b "explain what this repo does"     # one-off, without the interface
+opencode                   # uses the default; /models switches
+opencode run -m lab/qwen3.8-abliterated:27b "explain what this repo does"     # one-off, without the interface
 ```
 
-Switch to `lab/qwen3.8-abliterated:27b` (`/models`) only when the stock model refuses something you need.
+The uncensored model is the default (chosen 2026-11-23). `lab/qwen3.8:27b`, the stock model, is faster (67 against
+46 tok/s) and keeps Qwen's own tuning: switch to it with `/models` when speed matters more than refusals.
 
 Tested on 2026-11-23: through opencode, the lab model read a file with a bug, fixed it with a tool call, and
 explained the fix.
@@ -135,9 +137,9 @@ table above.
 - **VS Code, Continue** (`~/.continue/config.yaml`):
   ```yaml
   models:
-    - name: Qwen3.8 27B (lab)
+    - name: Qwen3.8 27B abliterated (lab)
       provider: openai
-      model: qwen3.8:27b
+      model: qwen3.8-abliterated:27b
       apiBase: https://coder.stbfarm.org/v1
       apiKey: ${{ secrets.LAB_CODER_KEY }}
       roles: [chat, edit, apply]
@@ -146,13 +148,13 @@ table above.
 - **VS Code, Cline and Roo Code:** API provider "OpenAI Compatible", with the base URL, the key and the model name.
 - **Claude Code** works through Ollama's Anthropic Messages API:
   ```sh
-  ANTHROPIC_BASE_URL=https://coder.stbfarm.org ANTHROPIC_AUTH_TOKEN=$LAB_CODER_KEY claude --model qwen3.8:27b
+  ANTHROPIC_BASE_URL=https://coder.stbfarm.org ANTHROPIC_AUTH_TOKEN=$LAB_CODER_KEY claude --model qwen3.8-abliterated:27b
   ```
 - **Any OpenAI client:**
   ```sh
   curl https://coder.stbfarm.org/v1/chat/completions -H "Authorization: Bearer $LAB_CODER_KEY" \
     -H 'Content-Type: application/json' \
-    -d '{"model":"qwen3.8:27b","messages":[{"role":"user","content":"Write a Python function that reverses a list."}]}'
+    -d '{"model":"qwen3.8-abliterated:27b","messages":[{"role":"user","content":"Write a Python function that reverses a list."}]}'
   ```
 
 ## The uncensored model
@@ -169,10 +171,10 @@ security, exploit or red-team code. It is not smarter.
   - fully on the GPU at a 98k context (19 GB);
   - correct tool call;
   - but slower than the stock model: 46 against 67 tok/s, and 50 against 109 with thinking.
-- **Abliteration costs some quality.** Use the stock model by default, and switch when it refuses something you
-  need.
-- **Swapping:** only one model fits on the 4090. The stock one stays loaded; the first request for the other swaps it
-  in, and later requests for the stock model swap back. Each swap takes a few seconds.
+- **The default since 2026-11-23,** by choice. Abliteration costs some quality and speed; the stock model stays one
+  `/models` away.
+- **Swapping:** only one model fits on the 4090. The uncensored one stays loaded; the first request for the stock
+  model swaps it in, and later requests for the uncensored one swap back. Each swap takes a few seconds.
 - **Responsibility:** the model will write what it is asked, including insecure or harmful code. Whoever uses it is
   responsible for what they do with the output, under the law and the licences involved. Qwen3.8 and the
   abliterated weights are Apache 2.0.
@@ -214,7 +216,7 @@ switching.
   - Port 127.0.0.1:11435.
   - The models are in `~/coder/models`.
 - **Memory:**
-  - The default model stays loaded (`OLLAMA_KEEP_ALIVE=-1`).
+  - The default model, the uncensored one, stays loaded (`OLLAMA_KEEP_ALIVE=-1`).
   - One model at a time, one request at a time.
   - Flash attention and an 8-bit KV cache.
 - **Sharing the lab:**
