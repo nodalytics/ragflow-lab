@@ -80,6 +80,9 @@ shell profile), never in a committed file:
 
 Then run `opencode` in a project; `/models` switches between the two and any other provider you have.
 
+Or keep the key in a file instead of the environment: save it to `~/.config/opencode/lab-coder.key` (mode 600) and
+set `"apiKey": "{file:~/.config/opencode/lab-coder.key}"`. `opencode models lab` should list both models.
+
 ## Other tools
 
 The same three values work everywhere: base URL `https://coder.stbfarm.org/v1`, your key, and a model name from the
