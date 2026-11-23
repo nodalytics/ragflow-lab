@@ -115,7 +115,7 @@ purge)
       -c 'rm -rf /x/docker/ragflow-logs /x/history_data_agent' || true
     rm -rf "${R:?}"
   fi
-  echo "purged (the nginx site, if installed: sudo sh ~/ragflow-lab/deploy/install.sh --remove)" ;;
+  echo "purged; to take its site down, disable ragflow in deploy/services and run: sudo sh ~/ragflow-lab/deploy/install.sh" ;;
 check)
   [ -n "$VERSION" ] || VERSION=$(latest)
   echo "RAGFlow $VERSION (dry run)"
