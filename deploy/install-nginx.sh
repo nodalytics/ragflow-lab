@@ -33,11 +33,27 @@ site() {  # site NAME CONF: install and enable one vhost, keeping what was there
   enabled="$enabled $1"
 }
 
-code=$(curl -s -o /dev/null -w "%{http_code}" -m 5 http://127.0.0.1:8088/ || true)
-if [ "$code" = 200 ]; then site ragflow.stbfarm.org ../nginx/ragflow.stbfarm.org.conf
-else echo "RAGFlow is not answering on 127.0.0.1:8088 (HTTP $code): ragflow.stbfarm.org skipped" >&2; fi
+# a service commented out in deploy/services has its site taken down
+enabled() { grep -qx "$1" ./services; }
+unpublish() {
+  if [ -e "/etc/nginx/sites-enabled/$1" ] || [ -e "/etc/nginx/sites-available/$1" ]; then
+    rm -f "/etc/nginx/sites-enabled/$1" "/etc/nginx/sites-available/$1"
+    echo "$1: disabled in deploy/services, site removed"
+  fi
+}
 
-if curl -fs -o /dev/null -m 5 http://127.0.0.1:11435/api/version; then
+if enabled ragflow; then
+  code=$(curl -s -o /dev/null -w "%{http_code}" -m 5 http://127.0.0.1:8088/ || true)
+  if [ "$code" = 200 ]; then site ragflow.stbfarm.org ../nginx/ragflow.stbfarm.org.conf
+  else echo "RAGFlow is not answering on 127.0.0.1:8088 (HTTP $code): ragflow.stbfarm.org skipped" >&2; fi
+else
+  unpublish ragflow.stbfarm.org
+fi
+
+if ! enabled coder; then
+  unpublish coder.stbfarm.org
+  rm -f /etc/nginx/coder-keys.map
+elif curl -fs -o /dev/null -m 5 http://127.0.0.1:11435/api/version; then
   # the key map: readable by root only; a key that is not exactly letters and digits is refused
   umask 077
   : >/etc/nginx/coder-keys.map.new

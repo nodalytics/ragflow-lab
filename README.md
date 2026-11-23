@@ -1,12 +1,12 @@
 # RAGFlow and coding models on the lab
 
-Two self-hosted AI services on the lab, each installed, upgraded and deployed from this repo, with CI on GitHub and
-continuous deployment on the lab itself:
+Two self-hosted AI services for the lab, each installed, upgraded and deployed from this repo, with CI on GitHub and
+continuous deployment on the lab itself. Which ones run is set in [`deploy/services`](deploy/services):
 
-| Service | Address | What it is |
-|---|---|---|
-| **RAGFlow** | https://ragflow.stbfarm.org | [RAGFlow](https://github.com/infiniflow/ragflow), a retrieval engine: it reads documents (PDF, Word, tables, scans), indexes them by their layout, and answers questions about them with a citation for every answer. Web UI, HTTP API, an OpenAI-compatible chat API and an MCP endpoint. |
-| **Coding models** | https://coder.stbfarm.org/v1 | Qwen3.8 27B, and an uncensored version of it, on the lab's RTX 4090, behind per-person API keys. For opencode, VS Code agents, Claude Code and any OpenAI client: [coder/README.md](coder/README.md). |
+| Service | Status | Address | What it is |
+|---|---|---|---|
+| **RAGFlow** | **disabled** since 2026-11-23 (torn down, no data kept) | https://ragflow.stbfarm.org | [RAGFlow](https://github.com/infiniflow/ragflow), a retrieval engine: it reads documents (PDF, Word, tables, scans), indexes them by their layout, and answers questions about them with a citation for every answer. Web UI, HTTP API, an OpenAI-compatible chat API and an MCP endpoint. |
+| **Coding models** | running | https://coder.stbfarm.org/v1 | Qwen3.8 27B, and an uncensored version of it, on the lab's RTX 4090, behind per-person API keys. For opencode, VS Code agents, Claude Code and any OpenAI client: [coder/README.md](coder/README.md). |
 
 [integration.md](integration.md) is the assessment of RAGFlow: what it is, what it costs to run, and when it is
 worth it.
@@ -17,7 +17,8 @@ worth it.
 | `ragflow.sh` | Runs on the lab: installs or upgrades RAGFlow, starts, stops, checks |
 | `coder/coder.sh` | Runs on the lab: the coding models (Ollama on the 4090) and their API keys |
 | `deploy/cd.sh` | Continuous deployment, run on the lab every 5 minutes by `deploy/ragflow-cd.timer` |
-| `deploy/install.sh` | Once on the lab with sudo: the CD timer and both nginx sites (`deploy/install-nginx.sh`) |
+| `deploy/services` | Which services CD deploys and `install.sh` publishes: one name per line, comment one out to disable it |
+| `deploy/install.sh` | Once on the lab with sudo: the CD timer and the enabled services' nginx sites (`deploy/install-nginx.sh`) |
 | `nginx/`, `coder/nginx/` | The two nginx sites: HTTPS with the lab's origin certificate; only Cloudflare can connect |
 | `.github/workflows/ci.yml` | CI: shellcheck, `nginx -t` on both sites, and dry runs of both setups |
 | `integration.md` | The RAGFlow assessment, and lessons from a first trial |
@@ -40,8 +41,15 @@ folder) from `.secrets/lab.env`, which git ignores: copy it from poker-analysis'
 
 ## CI/CD
 
-A push to `main` deploys itself, and so does a new RAGFlow release. Each deploy brings up RAGFlow first, then the
-coding models.
+A push to `main` deploys itself, and so does a new RAGFlow release while RAGFlow is enabled. Each deploy brings up
+the services listed in `deploy/services`: RAGFlow first, then the coding models.
+
+**Turning a service off or on:**
+- **Off:** comment it out in `deploy/services` and push. Then remove it from the lab (`./lab.sh purge`, or
+  `./lab.sh coder purge`), and run `sudo sh ~/ragflow-lab/deploy/install.sh` to take its site down. CD logs a
+  reminder while a disabled service's site is still published.
+- **On:** uncomment it and push. CD installs it, then run the same sudo install to publish its site.
+- RAGFlow was turned off this way on 2026-11-23. It held two accounts and no datasets or documents.
 
 - **CI**, on GitHub Actions, runs on every push and pull request, and every Monday. It catches a RAGFlow release that
   breaks our settings before the lab tries it. It runs:
@@ -103,6 +111,8 @@ The coding models' settings are at the top of `coder/coder.sh`.
   before then are out of date.
 
 ## RAGFlow
+
+**Disabled since 2026-11-23**: the notes below are for turning it back on (`deploy/services`).
 
 ### How it is set up
 

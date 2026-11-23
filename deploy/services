@@ -1,0 +1,5 @@
+# The services CD deploys on the lab and install.sh publishes, one per line. To disable one, comment it out and push;
+# then remove what is on the lab (./lab.sh purge for RAGFlow, ./lab.sh coder purge for the coding models) and re-run
+# sudo sh ~/ragflow-lab/deploy/install.sh to take its site down.
+coder
+# ragflow    disabled 2026-11-23: only the coding models are needed for now (torn down, data deleted)
