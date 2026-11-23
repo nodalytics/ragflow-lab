@@ -5,7 +5,7 @@
 # release. Each deploy: update the checkout, lint the scripts, then ragflow.sh up --wait (which validates the settings
 # and ports before starting anything, and waits until RAGFlow is healthy). A failed deploy is not retried until the
 # commit or the release changes again (or --force). The log is ~/ragflow/lab/cd.log; the state ~/ragflow/lab/cd.state.
-# nginx needs root, so a changed nginx config is only reported: sudo sh ~/ragflow-lab/deploy/install.sh
+# nginx needs root, so a changed nginx config or API key is only reported: sudo sh ~/ragflow-lab/deploy/install.sh
 set -uo pipefail
 
 C=$HOME/ragflow-lab
@@ -30,28 +30,37 @@ last=$(cat "$STATE" 2>/dev/null || true)  # "<commit> <release> ok|failed"
 
 if [ "$FORCE" = 0 ] && [ "${last% *}" = "$key" ]; then
   [ "${last##* }" = failed ] && exit 0      # this exact combination already failed: wait for a change
-  [ "$installed" = "$release" ] && exit 0   # deployed and still installed: nothing new
+  coder=$(docker inspect -f "{{.State.Running}}" coder-ollama 2>/dev/null || echo false)
+  [ "$installed" = "$release" ] && [ "$coder" = true ] && exit 0   # deployed and still running: nothing new
 fi
 
 log "deploying $commit with RAGFlow $release (was: ${last:-never}, installed $installed)"
 git reset -q --hard origin/main
 ok=1
-for f in "$C"/*.sh "$C"/deploy/*.sh; do bash -n "$f" 2>>"$LOG" || { log "syntax error in $f"; ok=0; }; done
+for f in "$C"/*.sh "$C"/deploy/*.sh "$C"/coder/*.sh; do bash -n "$f" 2>>"$LOG" || { log "syntax error in $f"; ok=0; }; done
 if [ "$ok" = 1 ] && command -v shellcheck >/dev/null; then
-  shellcheck -S error "$C"/*.sh "$C"/deploy/*.sh >>"$LOG" 2>&1 || { log "shellcheck errors"; ok=0; }
+  shellcheck -S error "$C"/*.sh "$C"/deploy/*.sh "$C"/coder/*.sh >>"$LOG" 2>&1 || { log "shellcheck errors"; ok=0; }
 fi
 if [ "$ok" = 1 ]; then
-  RAGFLOW_VERSION=$release bash "$C/ragflow.sh" up --wait >>"$LOG" 2>&1 || ok=0
+  RAGFLOW_VERSION=$release bash "$C/ragflow.sh" up --wait >>"$LOG" 2>&1 || { log "RAGFlow failed"; ok=0; }
+  bash "$C/coder/coder.sh" up --wait >>"$LOG" 2>&1 || { log "the coding models failed"; ok=0; }
 fi
 if [ "$ok" = 1 ]; then
   echo "$key ok" >"$STATE"
-  log "deployed $commit, RAGFlow $release, healthy"
+  log "deployed $commit, RAGFlow $release and the coding models, healthy"
 else
   echo "$key failed" >"$STATE"
   log "FAILED deploying $commit with RAGFlow $release (details above in this log)"
 fi
-site=/etc/nginx/sites-available/ragflow.stbfarm.org
-if [ -f "$site" ] && ! cmp -s "$site" "$C/nginx/ragflow.stbfarm.org.conf"; then
-  log "the nginx config changed: run once on the lab: sudo sh ~/ragflow-lab/deploy/install.sh"
+redo="run once on the lab: sudo sh ~/ragflow-lab/deploy/install.sh"
+for pair in "ragflow.stbfarm.org nginx" "coder.stbfarm.org coder/nginx"; do
+  # shellcheck disable=SC2086  # two words: the site and its folder
+  set -- $pair
+  site=/etc/nginx/sites-available/$1
+  if [ ! -f "$site" ]; then log "$1 is not published yet: $redo"
+  elif ! cmp -s "$site" "$C/$2/$1.conf"; then log "the nginx config of $1 changed: $redo"; fi
+done
+if [ -f "$HOME/coder/api-keys" ] && [ "$HOME/coder/api-keys" -nt /etc/nginx/coder-keys.map ]; then
+  log "the coder API keys changed: $redo"
 fi
 [ "$ok" = 1 ]

@@ -1,4 +1,4 @@
-# RAGFlow on the lab
+# RAGFlow and coding models on the lab
 
 [RAGFlow](https://github.com/infiniflow/ragflow) is a self-hosted retrieval engine. It reads documents (PDF, Word,
 tables, scans), splits them by their layout, indexes them, and answers questions about them with a citation for
@@ -13,6 +13,7 @@ assessment (v0.21.1, 2026-05-14): what it is, what it costs to run, and what to 
 | `deploy/install.sh` | Once on the lab with sudo: the CD timer and the nginx site (`deploy/install-nginx.sh`) |
 | `nginx/ragflow.stbfarm.org.conf` | The nginx site: HTTPS with the lab's origin certificate; only Cloudflare can connect |
 | `.github/workflows/ci.yml` | CI: shellcheck, `nginx -t`, and a dry run against RAGFlow's latest release |
+| `coder/` | **Coding models** on the lab's 4090 for opencode and other agents, at https://coder.stbfarm.org: Qwen3.8 27B and an uncensored (abliterated) version; see [coder/README.md](coder/README.md) |
 | `integration.md` | The assessment |
 
 ## Run it
@@ -31,7 +32,8 @@ folder) from `.secrets/lab.env`, which git ignores: copy it from poker-analysis'
 
 ## CI/CD
 
-A push to `main` deploys itself, and so does a new RAGFlow release.
+A push to `main` deploys itself, and so does a new RAGFlow release. Each deploy runs RAGFlow first and then the
+coding models (`coder/coder.sh up --wait`, which waits until the model is loaded fully on the GPU).
 
 - **CI**, on GitHub Actions, runs on every push and pull request, and every Monday. It catches a RAGFlow release that
   breaks our settings before the lab tries it. It runs:

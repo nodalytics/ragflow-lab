@@ -6,7 +6,8 @@
 #   ./lab.sh down     stop the stack, keep its data
 #   ./lab.sh purge    delete its data, images and ~/ragflow (asks first)
 #   ./lab.sh deploy   run the CD step now (deploy/cd.sh on the lab), instead of waiting for its timer
-#   ./lab.sh tunnel   the web UI on this machine's http://127.0.0.1:8088 (ctrl-c to stop)
+#   ./lab.sh tunnel   RAGFlow on http://127.0.0.1:8088 and the coding models on http://127.0.0.1:11435 (ctrl-c to stop)
+#   ./lab.sh coder status|up|down|purge|key add NAME|key list|key rm NAME   the coding models (coder/coder.sh)
 # The commands run ragflow.sh (from this folder) on the lab; see it for the settings it takes.
 set -euo pipefail
 
@@ -22,8 +23,12 @@ lab() { ssh "${ssh_opts[@]}" "$LAB" "$@"; }
 
 case $cmd in
 tunnel)
-  echo "RAGFlow on http://127.0.0.1:$WEB (ctrl-c to stop)"
-  exec ssh -N "${ssh_opts[@]}" -L "$WEB:127.0.0.1:$WEB" "$LAB" ;;
+  echo "RAGFlow on http://127.0.0.1:$WEB, the coding models on http://127.0.0.1:11435/v1 (ctrl-c to stop)"
+  exec ssh -N "${ssh_opts[@]}" -L "$WEB:127.0.0.1:$WEB" -L 11435:127.0.0.1:11435 "$LAB" ;;
+coder)
+  shift
+  [ "${1:-status}" = purge ] && { read -r -p "Delete the coding models downloaded on the lab? [y/N] " ok; [ "$ok" = y ] || exit 1; }
+  lab "bash -s -- ${*:-status}" <coder/coder.sh ;;  # settings: the defaults in coder/coder.sh, so CD agrees
 setup)
   # the repo is public: the lab pulls it over https, with no key or token
   lab "REPO=$REPO bash -s" <<'REMOTE'
@@ -47,5 +52,5 @@ deploy)
 up | status | down | check | latest)
   lab "RAGFLOW_WEB_PORT=$WEB RAGFLOW_VERSION=${RAGFLOW_VERSION:-} RAGFLOW_EMBED_MODEL=${RAGFLOW_EMBED_MODEL:-BAAI/bge-m3} bash -s -- $cmd" <ragflow.sh ;;
 *)
-  echo "unknown command $cmd (setup, status, up, down, purge, deploy, tunnel)" >&2; exit 2 ;;
+  echo "unknown command $cmd (setup, status, up, down, purge, deploy, tunnel, coder)" >&2; exit 2 ;;
 esac

@@ -19,21 +19,24 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - name: shellcheck
-        run: shellcheck -S warning *.sh deploy/*.sh
+        run: shellcheck -S warning *.sh deploy/*.sh coder/*.sh
       - name: sh syntax
-        run: for f in *.sh deploy/*.sh; do bash -n "$f"; done
+        run: for f in *.sh deploy/*.sh coder/*.sh; do bash -n "$f"; done
 
   nginx:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
-      - name: nginx -t on the site
+      - name: nginx -t on both sites
         run: |
           d=$(mktemp -d)
           openssl req -x509 -newkey rsa:2048 -nodes -days 1 -subj /CN=ragflow.stbfarm.org \
             -keyout "$d/server.key" -out "$d/server.crt" 2>/dev/null
+          echo '"Bearer sk-lab-test" "ci";' > "$d/coder-keys.map"
           docker run --rm \
             --mount type=bind,source="$PWD/nginx/ragflow.stbfarm.org.conf",target=/etc/nginx/conf.d/ragflow.conf,readonly \
+            --mount type=bind,source="$PWD/coder/nginx/coder.stbfarm.org.conf",target=/etc/nginx/conf.d/coder.conf,readonly \
+            --mount type=bind,source="$d/coder-keys.map",target=/etc/nginx/coder-keys.map,readonly \
             --mount type=bind,source="$d/server.crt",target=/etc/ssl/certs/server.crt,readonly \
             --mount type=bind,source="$d/server.key",target=/etc/ssl/private/server.key,readonly \
             nginx:1.27 nginx -t
@@ -46,3 +49,5 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: bash ragflow.sh check
+      - name: coding-model settings
+        run: bash coder/coder.sh check
