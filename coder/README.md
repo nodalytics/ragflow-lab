@@ -245,3 +245,15 @@ The lab disk was 99% full, with 17 GB free. To make room, these were deleted, al
 
 After the two coding models (34 GB), about 15 GB is free. Elasticsearch, inside RAGFlow, stops accepting documents
 below 5 GB free.
+
+## To do
+
+- [ ] **A 196k context with a 4-bit cache** (2026-11-27). The 98,304-token limit is the 4090's memory, not the model:
+      Qwen3.8 27B reads 262,144 tokens natively (`qwen35.context_length` from Ollama's `/api/show`). It is a hybrid
+      model, with full attention in 1 layer of 4 (16 of 65; 4 KV heads of 256), so its context cache is small, about
+      35 KB a token at the present `q8_0` and about 18 KB at `q4_0` (an estimate). Try `CODER_CONTEXT=196608` with
+      `OLLAMA_KV_CACHE_TYPE=q4_0` in `coder.sh`: about the same 3.4 GB cache as today's 98k at `q8_0`, so it should
+      fit the 4090 fully (`up --wait` refuses a model that spills). Then raise the opencode `limit.context` above,
+      and measure memory, speed, and the time to the first token on a long prompt. Costs: a small loss of accuracy
+      far back in a long context, and a restart of the coder service (about a minute). The full 262k would need the
+      RTX PRO 6000 (the research GPU) or a split over two cards.
